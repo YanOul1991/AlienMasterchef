@@ -2,28 +2,12 @@ using UnityEngine;
 
 public class CreatureButterfly : Creature<CreatureButterfly>
 {
-  public override void InteractionListen(IInteractionTriggerer triggerer)
-  {
-    throw new System.NotImplementedException();
-  }
-
-  protected override void Death()
-  {
-    throw new System.NotImplementedException();
-  }
-
-  protected override void Move()
-  {
-    throw new System.NotImplementedException();
-  }
-
-  protected override void Panic()
-  {
-    throw new System.NotImplementedException();
-  }
-
-  protected override void PlaySound()
-  {
-    throw new System.NotImplementedException();
-  }
+  [field: SerializeField] public override float BaseMovementSpeed { get; protected set; }
+  [field: SerializeField] public override float PanicMovementSpeed { get; protected set; }
+  [field: SerializeField] public override FoodStateTransform[] FoodStateTransforms { get; protected set; }
+  public override void InteractionListen(IInteractionTriggerer triggerer){ }
+  protected override void Death(){ }
+  protected override void Move(){ }
+  protected override void Panic(){ }
+  protected override void PlaySound(){ }
 }

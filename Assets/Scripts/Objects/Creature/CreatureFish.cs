@@ -1,6 +1,57 @@
-using UnityEngine;
+/*
+  Fish CReature Script - Yanis Oulmane 
 
-public class CreatureFish
+  AlienMasterchef© All Rights Reserved
+*/
+
+
+using UnityEngine;
+using UnityEngine.AI;
+
+public class CreatureFish : Creature<CreatureFish>
 {
-    
+#if UNITY_EDITOR
+  [Header("DEBUGGING")]
+  public bool __DEBUG__DebugMode;
+  public Transform[] __DEBUG__MovementTargetsTest;
+  public int __DEBUG__MovementIndex;
+#endif
+
+  [field: SerializeField] public override float BaseMovementSpeed { get; protected set; }
+  [field: SerializeField] public override float PanicMovementSpeed { get; protected set; }
+  [field: SerializeField] public override FoodStateTransform[] FoodStateTransforms { get; protected set; }
+  public override void InteractionListen(IInteractionTriggerer triggerer) { }
+  protected override void Death() { }
+  protected override void Move() { }
+  protected override void Panic() { }
+  protected override void PlaySound() { }
+
+  private NavMeshAgent m_navAgent;
+
+  public void Start()
+  {
+    m_navAgent = GetComponent<NavMeshAgent>();
+
+#if UNITY_EDITOR
+    if (__DEBUG__DebugMode)
+    {
+      __DEBUG__MovementIndex = 0;
+      m_navAgent.destination = __DEBUG__MovementTargetsTest[__DEBUG__MovementIndex].position;
+    }
+#endif
+  }
+
+  private void Update()
+  {
+#if UNITY_EDITOR
+    if (__DEBUG__DebugMode)
+    {
+      if (Vector3.Distance(m_navAgent.destination, transform.position) < 1.0f)
+      {
+        __DEBUG__MovementIndex = __DEBUG__MovementIndex == __DEBUG__MovementTargetsTest.Length - 1 ? 0 : __DEBUG__MovementIndex++;
+        m_navAgent.destination = __DEBUG__MovementTargetsTest[__DEBUG__MovementIndex].position;
+      }
+    }
+#endif
+  }
 }
