@@ -1139,6 +1139,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: -1358910474920537852, guid: e28308bcdd7692b4d9a7fdccc3ac83ee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.119
+      objectReference: {fileID: 0}
+    - target: {fileID: -1358910474920537852, guid: e28308bcdd7692b4d9a7fdccc3ac83ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0155
+      objectReference: {fileID: 0}
+    - target: {fileID: -1358910474920537852, guid: e28308bcdd7692b4d9a7fdccc3ac83ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.262
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e28308bcdd7692b4d9a7fdccc3ac83ee, type: 3}
       propertyPath: m_Name
       value: Pandazole Kitchen Food
