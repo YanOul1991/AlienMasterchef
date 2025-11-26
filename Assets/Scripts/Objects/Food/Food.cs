@@ -1,11 +1,24 @@
 using UnityEngine;
 
-public abstract class Food : MonoBehaviour, IInteractionListener
+public enum EToolType
 {
-  public abstract EBaseIngredient BaseIngredientType { get; }
-  protected abstract void IngredientTransform();
-  protected abstract void IngredientCook();
+  Knife,
+  Blender
+}
 
-  // Interface
-  public abstract void InteractionListen(IInteractionTriggerer triggerer);
+public class Food : MonoBehaviour, IInteractionListener
+{
+  [SerializeField] private FoodStateTransform[] FoodStates;
+
+  public void InteractionListen(IInteractionTriggerer triggerer)
+  {
+
+  }
+
+  [System.Serializable]
+  private class FoodStateTransform
+  {
+    [SerializeField] public EToolType toolType;
+    [SerializeField] public EBaseIngredient resultingIngredient;
+  }
 }

@@ -1,17 +1,21 @@
+/*
+  Blueprint class for creatures
+  AlienMasterchef All Rights Reserved
+*/
+
 using UnityEngine;
 using System;
 
-public abstract class Creature : MonoBehaviour, IInteractionListener
+public abstract class Creature<T> : MonoBehaviour, IInteractionListener
 {
-  static public event Action OnPanick;
-  static public event Action OnDeath;
+  static public event Action<T> OnPanick;
+  static public event Action<T> OnDeath;
+
   protected float m_baseMoveSpeed;
   protected float m_basePanickSpeed;
   protected abstract void Move();
   protected abstract void Panic();
   protected abstract void Death();
   protected abstract void PlaySound();
-
-  // Interface
   public abstract void InteractionListen(IInteractionTriggerer triggerer);
 }

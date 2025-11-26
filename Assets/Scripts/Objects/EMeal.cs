@@ -1,5 +1,6 @@
 
 public enum EMeal
 {
-  FishAndChips
+  FishAndChips,
+  Sushi
 }
