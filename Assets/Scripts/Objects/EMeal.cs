@@ -2,5 +2,9 @@
 public enum EMeal
 {
   FishAndChips,
-  Sushi
+  Sushi,
+  Onigiri,
+  ChickenNugget,
+  Meatballs,
+  Taco
 }

@@ -3,5 +3,9 @@ public enum EBaseIngredient
 {
   Steak,
   Fish,
-  Potato
+  Potato,
+  Mushroom,
+  Lettuce,
+  Tomato,
+  Rice
 }
