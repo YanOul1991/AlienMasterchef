@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7973259}
   - component: {fileID: 7973258}
+  - component: {fileID: 7973260}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -216,6 +217,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &7973260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1001 &196297338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -757,15 +787,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3054566516119258676, guid: 75f057b43e0a449dae5f6549f5107474, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6187
+      value: 5.345
       objectReference: {fileID: 0}
     - target: {fileID: 3054566516119258676, guid: 75f057b43e0a449dae5f6549f5107474, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.30164
+      value: 0.032000005
       objectReference: {fileID: 0}
     - target: {fileID: 3054566516119258676, guid: 75f057b43e0a449dae5f6549f5107474, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.1273
+      value: 4.948
       objectReference: {fileID: 0}
     - target: {fileID: 3054566516119258676, guid: 75f057b43e0a449dae5f6549f5107474, type: 3}
       propertyPath: m_LocalRotation.w
@@ -798,8 +828,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2391359435489877134, guid: 75f057b43e0a449dae5f6549f5107474, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 417691552}
   m_SourcePrefab: {fileID: 100100000, guid: 75f057b43e0a449dae5f6549f5107474, type: 3}
+--- !u!1 &417691551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2391359435489877134, guid: 75f057b43e0a449dae5f6549f5107474, type: 3}
+  m_PrefabInstance: {fileID: 417691550}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &417691552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417691551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57304e6784b9e9346bf0119c92b7903c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Food
+  foodStates:
+  - toolType: 0
+    requiredState: 0
+    resultingState: 1
+  - toolType: 3
+    requiredState: 1
+    resultingState: 3
+  currentIngredient:
+    baseIngredient: 1
+    state: 0
 --- !u!1001 &481923417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3808,6 +3868,73 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17ea6dac4b53e6b4392fa60313827804, type: 3}
+--- !u!1 &1750687794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1750687795}
+  - component: {fileID: 1750687796}
+  - component: {fileID: 1750687797}
+  m_Layer: 0
+  m_Name: IngredientCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1750687795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750687794}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7758136453879074403}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1750687796
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750687794}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.33, y: 0.07, z: 0.33}
+  m_Center: {x: 0, y: 0.06, z: 0}
+--- !u!114 &1750687797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750687794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4124a9e2507ce40b35ec26393f2fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Plate
+  ingredientsOnPlate: []
 --- !u!1001 &1796883901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4314,15 +4441,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2240259419076222087, guid: 586a8fad78c64d758ef4b7e17ea63960, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.9274
+      value: 5.765
       objectReference: {fileID: 0}
     - target: {fileID: 2240259419076222087, guid: 586a8fad78c64d758ef4b7e17ea63960, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.30164
+      value: 0.032
       objectReference: {fileID: 0}
     - target: {fileID: 2240259419076222087, guid: 586a8fad78c64d758ef4b7e17ea63960, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.1273
+      value: 4.925
       objectReference: {fileID: 0}
     - target: {fileID: 2240259419076222087, guid: 586a8fad78c64d758ef4b7e17ea63960, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4436,7 +4563,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6093427800568287275, guid: 6d171daac3cd16a43ab5d9299a961799, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.039
+      value: 5.42
       objectReference: {fileID: 0}
     - target: {fileID: 6093427800568287275, guid: 6d171daac3cd16a43ab5d9299a961799, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4444,7 +4571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093427800568287275, guid: 6d171daac3cd16a43ab5d9299a961799, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.465
+      value: 5.444
       objectReference: {fileID: 0}
     - target: {fileID: 6093427800568287275, guid: 6d171daac3cd16a43ab5d9299a961799, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4481,8 +4608,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6286318253013128395, guid: 6d171daac3cd16a43ab5d9299a961799, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4327101862606752720}
   m_SourcePrefab: {fileID: 100100000, guid: 6d171daac3cd16a43ab5d9299a961799, type: 3}
+--- !u!1 &4327101862606752719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6286318253013128395, guid: 6d171daac3cd16a43ab5d9299a961799, type: 3}
+  m_PrefabInstance: {fileID: 4327101862606752718}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4327101862606752720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4327101862606752719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57304e6784b9e9346bf0119c92b7903c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Food
+  foodStates:
+  - toolType: 3
+    requiredState: 1
+    resultingState: 3
+  currentIngredient:
+    baseIngredient: 1
+    state: 1
 --- !u!33 &6630894684329181638
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4503,7 +4657,6 @@ GameObject:
   - component: {fileID: 6630894684329181638}
   - component: {fileID: 8926518039347164428}
   - component: {fileID: 8526713958078608732}
-  - component: {fileID: 8926518039347164429}
   m_Layer: 0
   m_Name: Prop_Plate_01
   m_TagString: Untagged
@@ -4523,7 +4676,8 @@ Transform:
   m_LocalPosition: {x: 2.182, y: 0.000000059604645, z: 4.509}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1750687795}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7867225531885729834
@@ -4536,7 +4690,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4802247927410252957, guid: 86f1cbe89475a14499d1016e340e1a19, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.711
+      value: 5.092
       objectReference: {fileID: 0}
     - target: {fileID: 4802247927410252957, guid: 86f1cbe89475a14499d1016e340e1a19, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4544,7 +4698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4802247927410252957, guid: 86f1cbe89475a14499d1016e340e1a19, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.459
+      value: 5.4379997
       objectReference: {fileID: 0}
     - target: {fileID: 4802247927410252957, guid: 86f1cbe89475a14499d1016e340e1a19, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4653,19 +4807,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8926518039347164429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6981037560257107161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57304e6784b9e9346bf0119c92b7903c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Food
-  FoodStates: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
