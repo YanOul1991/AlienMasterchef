@@ -1,9 +1,11 @@
-/*
-  Fish CReature Script - Yanis Oulmane 
+/* ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 
+    +++ CreatureFish.cs
+        Script for Fish creatures
 
-  AlienMasterchef© All Rights Reserved
-*/
-
+    +++ Yanis Oulmane
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; */
 
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,13 +22,8 @@ public class CreatureFish : Creature<CreatureFish>
   [field: SerializeField] public override float BaseMovementSpeed { get; protected set; }
   [field: SerializeField] public override float PanicMovementSpeed { get; protected set; }
   [field: SerializeField] public override FoodStateTransform[] FoodStateTransforms { get; protected set; }
-  public override void InteractionListen(IInteractionTriggerer triggerer) { }
-  protected override void Death() { }
-  protected override void Move() { }
-  protected override void Panic() { }
-  protected override void PlaySound() { }
-
   private NavMeshAgent m_navAgent;
+
 
   public void Start()
   {
@@ -48,10 +45,31 @@ public class CreatureFish : Creature<CreatureFish>
     {
       if (Vector3.Distance(m_navAgent.destination, transform.position) < 1.0f)
       {
-        __DEBUG__MovementIndex = __DEBUG__MovementIndex == __DEBUG__MovementTargetsTest.Length - 1 ? 0 : __DEBUG__MovementIndex++;
+        Debug.Log("[--- DEBUG ---] Fish arrived at destination.");
+        __DEBUG__MovementIndex = __DEBUG__MovementIndex == __DEBUG__MovementTargetsTest.Length - 1 ? 0 : __DEBUG__MovementIndex + 1;
         m_navAgent.destination = __DEBUG__MovementTargetsTest[__DEBUG__MovementIndex].position;
       }
     }
 #endif
   }
+
+  private void OnCollisionEnter(Collision collision)
+  {
+    if (collision.gameObject.name == "Knife")
+    {
+      Death();
+    }
+  }
+
+  public override void InteractionListen(IInteractionTriggerer triggerer) { }
+  protected override void Death() 
+  {
+    GetComponent<Rigidbody>().isKinematic = true;
+    Animator animator = GetComponent<Animator>();
+    m_navAgent.enabled = false;
+    animator.SetTrigger("Death");
+  }
+  protected override void Move() { }
+  protected override void Panic() { }
+  protected override void PlaySound() { }
 }

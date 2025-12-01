@@ -12944,18 +12944,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife
       objectReference: {fileID: 0}
-    - target: {fileID: 1683112518824273440, guid: 9316f622f6bb6c246bed1e107e0e8049, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2203526048476709635, guid: 9316f622f6bb6c246bed1e107e0e8049, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9cc071acb09ef5e4aaa230a5bdf37ca0, type: 2}
-    - target: {fileID: 3698783684568408306, guid: 9316f622f6bb6c246bed1e107e0e8049, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6291676347963936714, guid: 9316f622f6bb6c246bed1e107e0e8049, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.015
@@ -12970,7 +12962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6291676347963936714, guid: 9316f622f6bb6c246bed1e107e0e8049, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.217
+      value: -0.804
       objectReference: {fileID: 0}
     - target: {fileID: 6291676347963936714, guid: 9316f622f6bb6c246bed1e107e0e8049, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13045,10 +13037,6 @@ PrefabInstance:
       propertyPath: '__DEBUG__MovementTargetsTest.Array.data[4]'
       value: 
       objectReference: {fileID: 1071720364}
-    - target: {fileID: 4643234003471468412, guid: d793b2a410ae47747ac5b8abdb18a95a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4796635068044176706, guid: d793b2a410ae47747ac5b8abdb18a95a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.017
