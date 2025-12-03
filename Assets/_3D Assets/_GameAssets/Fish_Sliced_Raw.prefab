@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 241788883477044875}
   serializedVersion: 2
   m_LocalRotation: {x: -0.11675962, y: 0.21432029, z: -0.3472896, w: 0.90544134}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.038600005, z: 0}
   m_LocalScale: {x: 0.15147002, y: 0.15147, z: 0.15147}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,10 +98,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6093427800568287275}
-  - component: {fileID: 3167805295524082354}
   - component: {fileID: 3701393107162096012}
   - component: {fileID: 4224043145797629522}
   - component: {fileID: 2979952741699160604}
+  - component: {fileID: 7759049637078841812}
   m_Layer: 0
   m_Name: Fish_Sliced_Raw
   m_TagString: Untagged
@@ -127,21 +127,6 @@ Transform:
   - {fileID: 1166659909921240580}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3167805295524082354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286318253013128395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57304e6784b9e9346bf0119c92b7903c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Food
-  FoodStates:
-  - toolType: 0
-    resultingIngredient: 1
 --- !u!114 &3701393107162096012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +197,25 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.08
   m_Center: {x: -0.045, y: 0, z: 0}
+--- !u!114 &7759049637078841812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286318253013128395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57304e6784b9e9346bf0119c92b7903c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Food
+  foodStates:
+  - toolType: 3
+    requiredState: 1
+    resultingState: 3
+  currentIngredient:
+    baseIngredient: 1
+    state: 1
 --- !u!1 &6707146413686838040
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 6707146413686838040}
   serializedVersion: 2
   m_LocalRotation: {x: 0.26858002, y: -0.9178633, z: 0.13404682, w: -0.25965983}
-  m_LocalPosition: {x: -0.07384324, y: 0.007642947, z: -0.027971745}
+  m_LocalPosition: {x: -0.07384324, y: 0.046242952, z: -0.027971745}
   m_LocalScale: {x: 0.15147, y: 0.15147, z: 0.15147002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,7 +332,7 @@ Transform:
   m_GameObject: {fileID: 7004305716602047121}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.055299997, y: -0.0204, z: 0.03270006}
+  m_LocalPosition: {x: -0.055299997, y: 0.0182, z: 0.03270006}
   m_LocalScale: {x: 0.15147, y: 0.15147, z: 0.15147}
   m_ConstrainProportionsScale: 0
   m_Children: []
