@@ -19,6 +19,7 @@ public abstract class Creature<T> : MonoBehaviour, IInteractionListener
   [SerializeField] public abstract float BaseMovementSpeed { get; protected set; }
   [SerializeField] public abstract float PanicMovementSpeed { get; protected set; }
   [SerializeField] public abstract FoodStateTransform[] FoodStateTransforms { get; protected set; }
+  [SerializeField] public abstract GameObject ResultingFood { get; protected set; }
 
   protected abstract void Move();
   protected abstract void Panic();
