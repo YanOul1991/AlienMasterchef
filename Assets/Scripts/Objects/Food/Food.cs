@@ -33,17 +33,17 @@ public class Food : MonoBehaviour, IInteractionListener
 
     private void TransformFood(EToolType toolType)
     {
-        foreach (var transform in foodStates)
-        {
-            if (transform.toolType == toolType && 
-                transform.requiredState == currentIngredient.state)
+            foreach (var transform in foodStates)
             {
-                currentIngredient.state = transform.resultingState;
-                Debug.Log($"Transformed to: {currentIngredient}");
-                return;
+                if (transform.toolType == toolType && 
+                    transform.requiredState == currentIngredient.state)
+                {
+                    currentIngredient.SetState(transform.resultingState);
+                    Debug.Log($"Transformed to: {currentIngredient}");
+                    return;
+                }
             }
-        }
-        Debug.Log($"No valid transformation for {toolType} on {currentIngredient}");
+            Debug.Log($"No valid transformation for {toolType} on {currentIngredient}");
     }
 
     [System.Serializable]

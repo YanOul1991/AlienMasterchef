@@ -13,4 +13,13 @@ public class Tool : MonoBehaviour, IInteractionTriggerer
     {
         listener.InteractionListen(this);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Food food = other.GetComponent<Food>();
+        if (food != null)
+        {
+            IInteractionTrigger(food);
+        }
+    }
 }
