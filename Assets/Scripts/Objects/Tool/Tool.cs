@@ -1,9 +1,25 @@
 using UnityEngine;
 
-public abstract class Tool : MonoBehaviour, IInteractionTriggerer
+public class Tool : MonoBehaviour, IInteractionTriggerer
 {
-  public abstract Food[] InteractableFoods {  get; protected set; }
+    [SerializeField] private EToolType toolType;
 
-  // Interface
-  public abstract void IInteractionTrigger(IInteractionListener listener);
+    public EToolType GetToolType()
+    {
+        return toolType;
+    }
+
+    public void IInteractionTrigger(IInteractionListener listener)
+    {
+        listener.InteractionListen(this);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Food food = other.GetComponent<Food>();
+        if (food != null)
+        {
+            IInteractionTrigger(food);
+        }
+    }
 }
