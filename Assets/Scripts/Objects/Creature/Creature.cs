@@ -7,8 +7,7 @@ using UnityEngine;
 using System;
 
 [RequireComponent(
-  typeof(Rigidbody),
-  typeof(CapsuleCollider))
+  typeof(Rigidbody))
  ]
 
 [Serializable]
