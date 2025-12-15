@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 287555428963748850}
   - component: {fileID: 3149552937739323135}
+  - component: {fileID: 3825845451261219622}
   m_Layer: 0
   m_Name: Collider Ingredient
   m_TagString: Untagged
@@ -265,6 +266,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.19205296, y: 0.16596413, z: 0.40550184}
   m_Center: {x: -0.0006287694, y: 0.08442199, z: -0.0029242039}
+--- !u!114 &3825845451261219622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861632774671565390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed98422b7d754d44b4ea7df53d93a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tool
+  toolType: 3
 --- !u!1 &3075412642999736328
 GameObject:
   m_ObjectHideFlags: 0
