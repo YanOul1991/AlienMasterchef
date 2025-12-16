@@ -252,7 +252,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkRigidbodyBaseExpanded: 0
   UseRigidBodyForMotion: 0
-  AutoUpdateKinematicState: 1
+  AutoUpdateKinematicState: 0
   AutoSetKinematicOnDespawn: 1
 --- !u!1 &3698783684568408306
 GameObject:
