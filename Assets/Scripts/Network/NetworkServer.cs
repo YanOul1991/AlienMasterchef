@@ -100,8 +100,8 @@ public class NetworkServer : NetworkBehaviour
     }
   }
 
-  [ServerRpc]
-  public void OnClientUpdateServerRpc(NetworkPlayerDataUpdate data, ServerRpcParams serverParams = default)
+  [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+  public void OnClientUpdateServerRpc(NetworkPlayerDataUpdate data, RpcParams serverParams = default)
   {
     ulong senderID = serverParams.Receive.SenderClientId;
     NetworkPlayer _target = m_connectedPlayers[senderID][0].GetComponent<NetworkPlayer>();
@@ -110,16 +110,16 @@ public class NetworkServer : NetworkBehaviour
     _target.RightHandUpdate(data.rightHandPosition, data.rightHandRotation);
   }
 
-  [ServerRpc]
-  public void OnClientGrabActionServerRpc(int hand, ServerRpcParams serverRpcParams = default)
+  [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+  public void OnClientGrabActionServerRpc(int hand, RpcParams serverRpcParams = default)
   {
     ulong senderID = serverRpcParams.Receive.SenderClientId;
     NetworkPlayer _target = m_connectedPlayers[senderID][0].GetComponent<NetworkPlayer>();
     _target.OnGrabAction(hand);
   }
 
-  [ServerRpc]
-  public void OnClientUngrabActionServerRpc(int hand, ServerRpcParams serverRpcParams = default)
+  [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+  public void OnClientUngrabActionServerRpc(int hand, RpcParams serverRpcParams = default)
   {
     ulong senderID = serverRpcParams.Receive.SenderClientId;
     NetworkPlayer _target = m_connectedPlayers[senderID][0].GetComponent<NetworkPlayer>();
