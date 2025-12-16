@@ -93,7 +93,6 @@ public class NetworkServer : NetworkBehaviour
     if (networkManager.ConnectedClients.Count >= 2)
     {
       Debug.Log($"<color=green>[--- NetworkServer ---] Enough players connected starting game");
-      OnGameStarted?.Invoke();
       if (IsServer)
       {
         Invoke(nameof(SpawnObject), 3.0f);
@@ -127,6 +126,12 @@ public class NetworkServer : NetworkBehaviour
     _target.OnUngrabAction(hand);
   }
 
+  [Rpc(SendTo.ClientsAndHost)]
+  public void OnGameStartedRpc()
+  {
+    OnGameStarted?.Invoke();
+  }
+
 #if UNITY_EDITOR
   private void SpawnObject()
   {
@@ -138,6 +143,8 @@ public class NetworkServer : NetworkBehaviour
       foreach (var obj in pair.Value)
         obj.GetComponent<NetworkObject>().Spawn();
     }
+
+    OnGameStartedRpc();
 #endif
   }
 
