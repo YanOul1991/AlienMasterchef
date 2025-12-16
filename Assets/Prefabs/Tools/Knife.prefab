@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: e9b4b64f-1c7e-4dff-8f3c-ce409bdc3951
-  instanceId: 2fa97416-5aae-41a2-8880-8d0dd987c0a0
+  instanceId: 72fc8db3-48f3-4085-ac62-28a72e048f71
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: d5c83ff6-47e4-4c98-acdd-041d4686912f
@@ -186,7 +186,7 @@ MonoBehaviour:
   GlobalObjectIdHash: 2439739479
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
-  Ownership: 8
+  Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkRigidbodyBaseExpanded: 0
   UseRigidBodyForMotion: 0
-  AutoUpdateKinematicState: 1
+  AutoUpdateKinematicState: 0
   AutoSetKinematicOnDespawn: 1
 --- !u!1 &1757232140110597688
 GameObject:
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 4e14e0ba-51f2-4a5c-a822-e304bf36d48c
-  instanceId: b6c1bffe-40ea-4b51-9833-045b1cd9a898
+  instanceId: f836502e-dc85-4c82-a66a-1b2baaa4ab4e
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: fb25cac7-8f37-455d-ac01-3fa41a1be37d
@@ -447,7 +447,7 @@ MonoBehaviour:
   _maxInteractors: -1
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
-  _pointableElement: {fileID: 0}
+  _pointableElement: {fileID: 8428554355952172279}
   _rigidbody: {fileID: 5561078372281120685}
   _physicsGrabbable: {fileID: 0}
   _resetGrabOnGrabsUpdated: 1
