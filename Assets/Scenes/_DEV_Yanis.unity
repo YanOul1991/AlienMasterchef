@@ -3295,7 +3295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CreatureMosquitoFlyZone
   X: 5
-  Y: 0.5
+  Y: 1
   Z: 5
   displayGizmos: 1
 --- !u!4 &416472086
@@ -7948,7 +7948,7 @@ MonoBehaviour:
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: e1583eef9141d4842901be128a150608, type: 2}
-    TickRate: 30
+    TickRate: 50
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
     ConnectionData: 

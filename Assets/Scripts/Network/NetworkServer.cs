@@ -68,7 +68,11 @@ public class NetworkServer : NetworkBehaviour
     if (!IsServer)
       return;
 
-    Invoke(nameof(SpawnObject), 3.0f);
+    if (networkManager.ConnectedClients.Count >= 2)
+    {
+      Debug.Log($"<color=green>[--- NetworkServer ---] Enough players connected starting game");
+      Invoke(nameof(SpawnObject), 3.0f);
+    }
   }
 
 #if UNITY_EDITOR
