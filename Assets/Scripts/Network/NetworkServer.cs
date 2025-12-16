@@ -90,12 +90,6 @@ public class NetworkServer : NetworkBehaviour
       _go_instance.GetComponent<NetworkPlayer>().Initialize(_leftHand, _rightHand);
     }
 
-
-    //_go_instance.GetComponent<NetworkObject>().Spawn();
-    //_leftHand.GetComponent<NetworkObject>().Spawn();
-    //_rightHand.GetComponent<NetworkObject>().Spawn();
-
-
     if (networkManager.ConnectedClients.Count >= 2)
     {
       Debug.Log($"<color=green>[--- NetworkServer ---] Enough players connected starting game");
@@ -122,7 +116,6 @@ public class NetworkServer : NetworkBehaviour
   {
     ulong senderID = serverRpcParams.Receive.SenderClientId;
     NetworkPlayer _target = m_connectedPlayers[senderID][0].GetComponent<NetworkPlayer>();
-
     _target.OnGrabAction(hand);
   }
 

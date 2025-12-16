@@ -22,7 +22,10 @@ public class MetaController : MonoBehaviour
   private void Start()
   {
     updateToNetwork = false;
-    NetworkServer.OnGameStarted += (delegate () { updateToNetwork = true; });
+    NetworkServer.OnGameStarted += (delegate () {
+      Debug.Log("[ --- MetaController --- ] GameHasStarted");
+      updateToNetwork = true;
+    });
   }
 
 
