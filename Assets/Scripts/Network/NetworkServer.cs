@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.Netcode;
 using UnityEngine;
@@ -10,6 +11,14 @@ public class NetworkServer : NetworkBehaviour
   private static readonly NetworkMatchmaking matchmaking = new();
   private static bool isMatchmakingRunning = false;
   private NetworkManager networkManager;
+
+  [Header("NetworkPrefabs")]
+  [SerializeField] private GameObject m_playerPrefab;
+  [SerializeField] private GameObject m_playerHandPrefab;
+
+  private Dictionary<ulong, GameObject[]> m_connectedPlayers;
+
+  public static Action OnConnectedToServer;
 
 #if UNITY_EDITOR
   [Header("Debug")]
@@ -39,10 +48,8 @@ public class NetworkServer : NetworkBehaviour
   {
     Debug.Log($"[--- NetworkServer ---] Waiting for NetworkManager to be ready...");
 
-    while (NetworkManager.Singleton == null)
-      yield return null;
+    while (NetworkManager.Singleton == null) yield return null;
 
-    // yield return new WaitUntil(() => NetworkManager.Singleton != null && NetworkManager.didStart);
     networkManager = NetworkManager.Singleton;
     Debug.Log($"[--- NetworkServer ---] NetworkManager is ready.");
     Invoke(nameof(StartMatchmaking), 5.0f);
@@ -57,16 +64,36 @@ public class NetworkServer : NetworkBehaviour
     if (IsServer)
     {
       networkManager.OnClientConnectedCallback += OnClientConnected;
+      m_connectedPlayers = new Dictionary<ulong, GameObject[]>();
     }
+
   }
 
   private void OnClientConnected(ulong id)
   {
-    Debug.Log($"<color=green>[--- NetworkServer ---] A client is connected!</color>");
+    Debug.Log($"<color=green>[--- NetworkServer ---] A client is connected! ID = {id}</color>");
     Debug.Log($"<color=green>[--- NetworkServer ---] Client count: {networkManager.ConnectedClients.Count}</color>");
 
-    if (!IsServer)
-      return;
+
+    if (!IsServer) return;
+
+    m_connectedPlayers[id] = new GameObject[3];
+
+    GameObject _go_instance = Instantiate(m_playerPrefab);
+    GameObject _leftHand = Instantiate(m_playerHandPrefab);
+    GameObject _rightHand = Instantiate(m_playerHandPrefab);
+
+    m_connectedPlayers[id][0] = _go_instance;
+    m_connectedPlayers[id][1] = _leftHand;
+    m_connectedPlayers[id][2] = _rightHand;
+
+    _go_instance.GetComponent<NetworkPlayer>().Initialize(_leftHand, _rightHand);
+
+    //_go_instance.GetComponent<NetworkObject>().Spawn();
+    //_leftHand.GetComponent<NetworkObject>().Spawn();
+    //_rightHand.GetComponent<NetworkObject>().Spawn();
+
+    OnConnectedToServer?.Invoke();
 
     if (networkManager.ConnectedClients.Count >= 2)
     {
@@ -75,14 +102,44 @@ public class NetworkServer : NetworkBehaviour
     }
   }
 
+  [ServerRpc]
+  public void OnClientUpdateServerRpc(NetworkPlayerDataUpdate data, ServerRpcParams serverParams = default)
+  {
+    ulong senderID = serverParams.Receive.SenderClientId;
+    NetworkPlayer _target = m_connectedPlayers[senderID][0].GetComponent<NetworkPlayer>();
+
+    _target.LeftHandUpdate(data.leftHandPosition, data.leftHandRotation);
+    _target.RightHandUpdate(data.rightHandPosition, data.rightHandRotation);
+  }
+
+  [ServerRpc]
+  public void OnClientGrabActionServerRpc(int hand, ServerRpcParams serverRpcParams = default)
+  {
+    ulong senderID = serverRpcParams.Receive.SenderClientId;
+    NetworkPlayer _target = m_connectedPlayers[senderID][0].GetComponent<NetworkPlayer>();
+
+    _target.OnGrabAction(hand);
+  }
+
+  [ServerRpc]
+  public void OnClientUngrabActionServerRpc(int hand, ServerRpcParams serverRpcParams = default)
+  {
+    ulong senderID = serverRpcParams.Receive.SenderClientId;
+    NetworkPlayer _target = m_connectedPlayers[senderID][0].GetComponent<NetworkPlayer>();
+    _target.OnUngrabAction(hand);
+  }
+
 #if UNITY_EDITOR
   private void SpawnObject()
   {
-    if(!IsServer)
+    if (!IsServer)
       return;
 
-    GameObject _newKnife = Instantiate(_KnifePrefab);
-    _newKnife.GetComponent<NetworkObject>().Spawn(true);
+    foreach (var pair in m_connectedPlayers)
+    {
+      foreach(var obj in pair.Value)
+      obj.GetComponent<NetworkObject>().Spawn();
+    }
 #endif
   }
 

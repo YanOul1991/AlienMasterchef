@@ -1,67 +1,81 @@
 using System;
+using Unity.Netcode;
 using UnityEngine;
 
 public class MetaController : MonoBehaviour
 {
+  [Header("Meta Controls")]
   [SerializeField] private Transform m_leftController;
   [SerializeField] private Transform m_rightController;
 
-  [SerializeField] private SphereCollider m_leftControllerCollider;
-  [SerializeField] private SphereCollider m_rightControllerCollider;
+  [Header("GameObjects")]
+  [SerializeField] private GameObject m_leftHandObject;
+  [SerializeField] private GameObject _rightHandObject;
 
   [SerializeField] private LayerMask m_layerMask;
 
-  private GameObject m_leftHandGrab;
-  private GameObject m_rightHandGrab;
+  //private GameObject m_leftHandGrab;
+  //private GameObject m_rightHandGrab;
+
+  private bool updateToNetwork;
 
   private void Start()
   {
-    m_leftControllerCollider.enabled = false;
-    m_rightControllerCollider.enabled = false;
+    updateToNetwork = false;
+    NetworkServer.OnConnectedToServer += (delegate () { updateToNetwork = true; });
   }
+
 
   void Update()
   {
-    m_leftControllerCollider.transform.position = m_leftController.position;
-    m_rightControllerCollider.transform.position = m_rightController.position;
-    m_leftControllerCollider.transform.rotation = m_leftController.rotation;
-    m_rightControllerCollider.transform.rotation = m_rightController.rotation;
-
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> RIGHT HAND GRAB
-    if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
+    if (updateToNetwork)
     {
-      Collider[] hitColliders = Physics.OverlapSphere(m_rightController.position, 0.2f, m_layerMask);
+      NetworkServer.Singleton.OnClientUpdateServerRpc(
+        new NetworkPlayerDataUpdate
+        {
+          leftHandPosition = m_leftController.position,
+          leftHandRotation = m_leftController.rotation,
+          rightHandPosition = m_rightController.position,
+          rightHandRotation = m_rightController.rotation,
+        });
 
-      if (hitColliders.Length > 0)
+      // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> LEFT HAND GRAB
+      if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
       {
-        Debug.Log($"<color=cyan> GRABBED {hitColliders[0].gameObject.name}");
-        m_rightHandGrab = hitColliders[0].gameObject;
-        m_rightHandGrab.transform.parent = m_rightControllerCollider.transform;
-        Destroy(m_rightHandGrab.GetComponent<Rigidbody>());
+        NetworkServer.Singleton.OnClientGrabActionServerRpc(0);
+      }
+      // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> RIGHT HAND GRAB
+      if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
+      {
+        NetworkServer.Singleton.OnClientGrabActionServerRpc(1);
+      }
+      // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> LEFT HAND UNGRAB
+      if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
+      {
+        NetworkServer.Singleton.OnClientUngrabActionServerRpc(0);
+      }
+      // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> RIGHT HAND UNGRAB
+      if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
+      {
+        NetworkServer.Singleton.OnClientUngrabActionServerRpc(1);
       }
     }
 
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> LEFT HAND GRAB
-    if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
-    {
-      //m_leftControllerCollider.enabled = true;
-    }
+  }
+}
 
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> LEFT HAND UNGRAB
-    if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
-    {
-      //m_leftControllerCollider.enabled = false;
-    }
+public struct NetworkPlayerDataUpdate : INetworkSerializable
+{
+  public Vector3 leftHandPosition;
+  public Quaternion leftHandRotation;
+  public Vector3 rightHandPosition;
+  public Quaternion rightHandRotation;
 
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> RIGHT HAND UNGRAB
-    if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
-    {
-      if (m_rightHandGrab != null)
-      {
-        m_rightHandGrab.AddComponent<Rigidbody>();
-        m_rightHandGrab.transform.parent = null;
-        m_rightHandGrab = null;
-      }
-    }
+  public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+  {
+    serializer.SerializeValue(ref leftHandPosition);
+    serializer.SerializeValue(ref leftHandRotation);
+    serializer.SerializeValue(ref rightHandPosition);
+    serializer.SerializeValue(ref rightHandRotation);
   }
 }
