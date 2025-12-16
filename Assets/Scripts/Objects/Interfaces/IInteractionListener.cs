@@ -1,5 +1,4 @@
-
 public interface IInteractionListener
 {
-    public void InteractionListen(IInteractionTriggerer triggerer);
+    void InteractionListen(IInteractionTriggerer triggerer);
 }
