@@ -18,7 +18,7 @@ public class NetworkServer : NetworkBehaviour
 
   private Dictionary<ulong, GameObject[]> m_connectedPlayers;
 
-  public static Action OnConnectedToServer;
+  public static Action OnGameStarted;
 
 #if UNITY_EDITOR
   [Header("Debug")]
@@ -75,30 +75,35 @@ public class NetworkServer : NetworkBehaviour
     Debug.Log($"<color=green>[--- NetworkServer ---] Client count: {networkManager.ConnectedClients.Count}</color>");
 
 
-    if (!IsServer) return;
+    if (IsServer)
+    {
+      m_connectedPlayers[id] = new GameObject[3];
 
-    m_connectedPlayers[id] = new GameObject[3];
+      GameObject _go_instance = Instantiate(m_playerPrefab);
+      GameObject _leftHand = Instantiate(m_playerHandPrefab);
+      GameObject _rightHand = Instantiate(m_playerHandPrefab);
 
-    GameObject _go_instance = Instantiate(m_playerPrefab);
-    GameObject _leftHand = Instantiate(m_playerHandPrefab);
-    GameObject _rightHand = Instantiate(m_playerHandPrefab);
+      m_connectedPlayers[id][0] = _go_instance;
+      m_connectedPlayers[id][1] = _leftHand;
+      m_connectedPlayers[id][2] = _rightHand;
 
-    m_connectedPlayers[id][0] = _go_instance;
-    m_connectedPlayers[id][1] = _leftHand;
-    m_connectedPlayers[id][2] = _rightHand;
+      _go_instance.GetComponent<NetworkPlayer>().Initialize(_leftHand, _rightHand);
+    }
 
-    _go_instance.GetComponent<NetworkPlayer>().Initialize(_leftHand, _rightHand);
 
     //_go_instance.GetComponent<NetworkObject>().Spawn();
     //_leftHand.GetComponent<NetworkObject>().Spawn();
     //_rightHand.GetComponent<NetworkObject>().Spawn();
 
-    OnConnectedToServer?.Invoke();
 
     if (networkManager.ConnectedClients.Count >= 2)
     {
       Debug.Log($"<color=green>[--- NetworkServer ---] Enough players connected starting game");
-      Invoke(nameof(SpawnObject), 3.0f);
+      OnGameStarted?.Invoke();
+      if (IsServer)
+      {
+        Invoke(nameof(SpawnObject), 3.0f);
+      }
     }
   }
 
@@ -137,8 +142,8 @@ public class NetworkServer : NetworkBehaviour
 
     foreach (var pair in m_connectedPlayers)
     {
-      foreach(var obj in pair.Value)
-      obj.GetComponent<NetworkObject>().Spawn();
+      foreach (var obj in pair.Value)
+        obj.GetComponent<NetworkObject>().Spawn();
     }
 #endif
   }
