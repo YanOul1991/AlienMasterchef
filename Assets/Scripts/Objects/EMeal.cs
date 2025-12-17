@@ -3,7 +3,7 @@ public enum EMeal
   FishAndChips,
   Sushi,
   Onigiri,
-  ChickenNugget,
-  Meatballs,
+  BugNuggets,
+  MeatMushrooms,
   Taco
 }
