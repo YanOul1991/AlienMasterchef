@@ -2,18 +2,37 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class OrderGenerator : MonoBehaviour
 {
+    //OrderManager -----------------
     public OrderManager orderManager;
-    public Canvas prefabOrderTicket;
+
+    //Prefab -----------------
+    public Canvas FishAndChipsTicket;
+    public Canvas SushiTicket;
+    public Canvas OnigiriTicket;
+    public Canvas BugNuggetsTicket;
+    public Canvas MeatMushroomsTicket;
+    public Canvas TacoTicket;
+
+    //Listes -----------------
     public List<OrderTicket> listTickets = new List<OrderTicket>();
     List<Plat> listActiveOrders;
+
+    //Vérification de status d'envoi -----------------
     bool orderSent;
+
+    //Effets sonores pour les commandes -----------------
+    AudioSource audiosource;
+    public AudioClip audio_ReceivedOrder;
+    public AudioClip audio_CompletedOrder;
 
     void Start()
     {
         orderSent = false;
+        audiosource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -28,15 +47,6 @@ public class OrderGenerator : MonoBehaviour
             orderSent = true;
             StartCoroutine(GenererCommande());
         }
-
-        //CompletionCommande();
-        //foreach(Ingredient i in (RecipeDatabase.GetRecipe(listActiveOrders[0].mealType)).requiredIngredients)
-        //{
-        //    //Liste des ingrédients requis
-        //    print(i.state);
-        //    print(i.baseIngredient);
-        //}
-        //print((RecipeDatabase.GetRecipe(listActiveOrders[0].mealType)).requiredIngredients);
 
         Debug.Log("<color=blue>" + nbCommandes + "</color>");
     }
@@ -57,7 +67,6 @@ public class OrderGenerator : MonoBehaviour
         orderManager.CreateOrder(commandeAleatoire);
 
         //Affichage de la commande au comptoir (UI)
-
         bool commandePasse = false;
 
         for (int i = 0; i < listTickets.Count && i < listActiveOrders.Count; i++)
@@ -66,14 +75,64 @@ public class OrderGenerator : MonoBehaviour
 
             if (t.ticket == null && !commandePasse)
             {
-                Canvas commandeGeneree = Instantiate(prefabOrderTicket, t.transform.position, t.transform.rotation);
-                commandeGeneree.gameObject.SetActive(true);
+                foreach (Ingredient ingredient in (RecipeDatabase.GetRecipe(commandeAleatoire).requiredIngredients))
+                {
+                    //Liste des ingrédients requis
+                    print(ingredient.state);
+                    print(ingredient.baseIngredient);
+                }
+
                 t.plat = listActiveOrders[i];
-                t.ticket = commandeGeneree;
+
+                Canvas commandeGenere = null;
+
+                switch (t.plat.mealType)
+                {
+                    case EMeal.FishAndChips:
+                        commandeGenere = Instantiate(FishAndChipsTicket, t.transform.position, t.transform.rotation);
+                        break;
+
+                    case EMeal.Sushi:
+                        commandeGenere = Instantiate(SushiTicket, t.transform.position, t.transform.rotation);
+                        break;
+
+                    case EMeal.Onigiri:
+                        commandeGenere = Instantiate(OnigiriTicket, t.transform.position, t.transform.rotation);
+                        break;
+
+                    case EMeal.BugNuggets:
+                        commandeGenere = Instantiate(BugNuggetsTicket, t.transform.position, t.transform.rotation);
+                        break;
+
+                    case EMeal.MeatMushrooms:
+                        commandeGenere = Instantiate(MeatMushroomsTicket, t.transform.position, t.transform.rotation);
+                        break;
+
+                    case EMeal.Taco:
+                        commandeGenere = Instantiate(TacoTicket, t.transform.position, t.transform.rotation);
+                        break;
+
+                    default:
+                        Debug.LogError("Meal type non géré : " + t.plat.mealType);
+                        break;
+                }
+
+                // Assignation finale
+                if (commandeGenere != null)
+                {
+                    t.ticket = commandeGenere;
+                    commandeGenere.gameObject.SetActive(true);
+                }
+
                 commandePasse = true;
             }
+
             Debug.Log($"Item at index {i}: {t.plat}");
         }
+
+        //GESTION DU SON
+        audiosource.PlayOneShot(audio_ReceivedOrder);
+
 
         //Puis on attend 30 secondes
         yield return new WaitForSeconds(30f);
@@ -84,6 +143,10 @@ public class OrderGenerator : MonoBehaviour
     void CompletionCommande(Plat order)
     {
         orderManager.CompleteOrder(order);
+
+        //GESTION DU SON
+        audiosource.PlayOneShot(audio_CompletedOrder);
+
         foreach (OrderTicket t in listTickets)
         {
             if (t.plat.IsCompleted())
