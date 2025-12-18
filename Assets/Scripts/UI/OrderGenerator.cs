@@ -6,8 +6,8 @@ using UnityEngine;
 public class OrderGenerator : MonoBehaviour
 {
     public OrderManager orderManager;
-    public Canvas prefabTicketOrder;
-    public List<TicketOrder> listTickets = new List<TicketOrder>();
+    public Canvas prefabOrderTicket;
+    public List<OrderTicket> listTickets = new List<OrderTicket>();
     List<Plat> listActiveOrders;
     bool orderSent;
 
@@ -62,11 +62,11 @@ public class OrderGenerator : MonoBehaviour
 
         for (int i = 0; i < listTickets.Count && i < listActiveOrders.Count; i++)
         {
-            TicketOrder t = listTickets[i];
+            OrderTicket t = listTickets[i];
 
             if (t.ticket == null && !commandePasse)
             {
-                Canvas commandeGeneree = Instantiate(prefabTicketOrder, t.transform.position, t.transform.rotation);
+                Canvas commandeGeneree = Instantiate(prefabOrderTicket, t.transform.position, t.transform.rotation);
                 commandeGeneree.gameObject.SetActive(true);
                 t.plat = listActiveOrders[i];
                 t.ticket = commandeGeneree;
@@ -84,7 +84,7 @@ public class OrderGenerator : MonoBehaviour
     void CompletionCommande(Plat order)
     {
         orderManager.CompleteOrder(order);
-        foreach (TicketOrder t in listTickets)
+        foreach (OrderTicket t in listTickets)
         {
             if (t.plat.IsCompleted())
             {

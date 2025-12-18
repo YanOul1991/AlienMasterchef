@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 
-public class TicketOrder
+public class OrderTicket
 {
     public Transform transform;
     public Canvas ticket;
