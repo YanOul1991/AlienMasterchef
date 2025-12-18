@@ -5,17 +5,30 @@
 
 using UnityEngine;
 using System;
+using Unity.Netcode;
 
-public abstract class Creature<T> : MonoBehaviour, IInteractionListener
+[RequireComponent(typeof(
+  NetworkObject
+))]
+[Serializable]
+public abstract class Creature<T> : NetworkBehaviour, IInteractionListener
 {
   static public event Action<T> OnPanick;
   static public event Action<T> OnDeath;
+  [SerializeField] public abstract float BaseMovementSpeed { get; protected set; }
+  [SerializeField] public abstract float PanicMovementSpeed { get; protected set; }
+  [SerializeField] public abstract FoodStateTransform[] FoodStateTransforms { get; protected set; }
+  [SerializeField] public abstract GameObject ResultingFood { get; protected set; }
 
-  protected float m_baseMoveSpeed;
-  protected float m_basePanickSpeed;
   protected abstract void Move();
   protected abstract void Panic();
   protected abstract void Death();
-  protected abstract void PlaySound();
   public abstract void InteractionListen(IInteractionTriggerer triggerer);
+
+  [Serializable]
+  public struct FoodStateTransform
+  {
+    [SerializeField] public EToolType interactionTool;
+    [SerializeField] public EBaseIngredient resultingFood;
+  }
 }
