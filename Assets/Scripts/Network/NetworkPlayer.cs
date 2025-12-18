@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class NetworkPlayer : NetworkBehaviour
 {
+  private GameObject m_root;
   private GameObject m_leftHand;
   private GameObject m_rightHand;
 
@@ -11,21 +12,21 @@ public class NetworkPlayer : NetworkBehaviour
   private GameObject m_leftHandGrabbedObject;
   private GameObject m_rightHandGrabbedObject;
 
-  public void Initialize(GameObject leftHand, GameObject rightHand)
+  public void Initialize(GameObject root, GameObject leftHand, GameObject rightHand)
   {
-    m_leftHand = leftHand;
+    m_root      = root;
+    m_leftHand  = leftHand;
     m_rightHand = rightHand;
   }
 
-  public void LeftHandUpdate(Vector3 position, Quaternion rotation)
-  {
-    m_leftHand.transform.SetPositionAndRotation(position, rotation);
-  }
+  public void RootUpdate(Vector3 position, Quaternion rotation) 
+    => m_root.transform.SetPositionAndRotation(position, rotation);
 
-  public void RightHandUpdate(Vector3 position, Quaternion rotation)
-  {
-    m_rightHand.transform.SetPositionAndRotation(position, rotation);
-  }
+  public void LeftHandUpdate(Vector3 position, Quaternion rotation) 
+    => m_leftHand.transform.SetPositionAndRotation(position, rotation);
+
+  public void RightHandUpdate(Vector3 position, Quaternion rotation) 
+    => m_rightHand.transform.SetPositionAndRotation(position, rotation);
 
   public void OnGrabAction(int hand)
   {

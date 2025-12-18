@@ -88,7 +88,7 @@ public class NetworkServer : NetworkBehaviour
       m_connectedPlayers[id][1] = _leftHand;
       m_connectedPlayers[id][2] = _rightHand;
 
-      _go_instance.GetComponent<NetworkPlayer>().Initialize(_leftHand, _rightHand);
+      _go_instance.GetComponent<NetworkPlayer>().Initialize(_go_instance, _leftHand, _rightHand);
     }
 
     if (networkManager.ConnectedClients.Count >= 2)
@@ -168,7 +168,8 @@ public class NetworkServer : NetworkBehaviour
   {
     ulong senderID = serverParams.Receive.SenderClientId;
     NetworkPlayer _target = m_connectedPlayers[senderID][0].GetComponent<NetworkPlayer>();
-
+    
+    _target.RootUpdate(data.rootPosition, data.rootRotation);
     _target.LeftHandUpdate(data.leftHandPosition, data.leftHandRotation);
     _target.RightHandUpdate(data.rightHandPosition, data.rightHandRotation);
   }

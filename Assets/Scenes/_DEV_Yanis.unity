@@ -23538,6 +23538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MetaController
   m_leftController: {fileID: 462348260}
   m_rightController: {fileID: 1449685889}
+  m_playerRoot: {fileID: 904818728}
   m_leftHandObject: {fileID: 1661724414}
   _rightHandObject: {fileID: 688572626}
   m_layerMask:
