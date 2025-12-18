@@ -8,47 +8,58 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;*/
 
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public sealed class CreatureMosquito : Creature<CreatureMosquito>
 {
   private static CreatureMosquitoFlyZone flyZoneData;
-
   private Vector3 m_targetDestination;
   private Vector3 m_velocity;
+  private AudioClip deathSound;
 
   /* ----------------------------------
-    --- Overrides | Fields
+    --- Overrides
   ---------------------------------- */
   [field: SerializeField] public override float BaseMovementSpeed { get; protected set; }
   [field: SerializeField] public override float PanicMovementSpeed { get; protected set; }
   [field: SerializeField] public override FoodStateTransform[] FoodStateTransforms { get; protected set; }
   [field: SerializeField] public override GameObject ResultingFood { get; protected set; }
-
   public static void SetFlyZoneData(CreatureMosquitoFlyZone zone) => flyZoneData = zone;
 
-  private void OnEnable()
-  {
-    transform.position = GetRandomPosition();
-    Move();
-  }
 
-  private static Vector3 GetRandomPosition()
+  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    >>> UNITY API FUNCTIONS
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  public override void OnNetworkSpawn()
   {
-    return new Vector3(
-      Random.Range(flyZoneData.transform.position.x, flyZoneData.Opposite.x),
-      Random.Range(flyZoneData.transform.position.y, flyZoneData.Opposite.y),
-      Random.Range(flyZoneData.transform.position.z, flyZoneData.Opposite.z)
-    );
+    base.OnNetworkSpawn();
+    // Only Server applies 
+    // movement logic to creature
+    if (IsServer)
+    {
+      transform.position = GetRandomPosition();
+      Move();
+    }
   }
-
   private void FixedUpdate()
   {
     transform.position += m_velocity * Time.fixedDeltaTime;
+  }
 
-    // if (Vector3.Distance(transform.position, m_targetDestination) < 1.0f)
-    //   StartCoroutine(OnArrivedToDestination());
+  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    >>> DEFINED FUNCTIONS
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  private static Vector3 GetRandomPosition()
+  {
+    return new Vector3(
+      UnityEngine.Random.Range(flyZoneData.transform.position.x, flyZoneData.Opposite.x),
+      UnityEngine.Random.Range(flyZoneData.transform.position.y, flyZoneData.Opposite.y),
+      UnityEngine.Random.Range(flyZoneData.transform.position.z, flyZoneData.Opposite.z)
+    );
   }
 
   private IEnumerator OnArrivedToDestination()
@@ -59,16 +70,19 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
     }
 
     m_velocity = Vector3.zero;
-    yield return new WaitForSeconds(Random.Range(0, 2.0f));
+    yield return new WaitForSeconds(UnityEngine.Random.Range(0, 2.0f));
     Move();
     yield break;
   }
 
   /* ----------------------------------
-      --- Override | Methods
+      --- Overrides
   ---------------------------------- */
   public override void InteractionListen(IInteractionTriggerer triggerer){ }
-  protected override void Death(){ }
+  protected override void Death()
+  {
+    PlayDeathSoundRpc();
+  }
 
   protected override void Move()
   {
@@ -79,12 +93,13 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
   }
 
   protected override void Panic(){ }
-  protected override void PlaySound(){ }
-
-  void OnDrawGizmos()
+  
+  [Rpc(SendTo.ClientsAndHost)]
+  private void PlayDeathSoundRpc()
   {
-    Gizmos.color = Color.orange;
-
-    Gizmos.DrawLine(transform.position, m_targetDestination);
+    if (deathSound != null)
+    {
+      GetComponent<AudioSource>().PlayOneShot(deathSound);
+    }
   }
 }

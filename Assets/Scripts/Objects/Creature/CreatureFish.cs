@@ -11,11 +11,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(
-  typeof(Rigidbody),
-  typeof(Animator),
-  typeof(NavMeshAgent)
-)]
 public class CreatureFish : Creature<CreatureFish>
 {
 #if UNITY_EDITOR
@@ -54,46 +49,57 @@ public class CreatureFish : Creature<CreatureFish>
 #endif // UNITY_EDITOR
   }
 
+  public override void OnNetworkSpawn()
+  {
+    base.OnNetworkSpawn();
+
+    if (!IsServer)
+    {
+      m_navAgent.enabled = false;
+    }
+  }
+
   private void Update()
   {
-#if UNITY_EDITOR
-    if (__DEBUG__DebugMode)
-    {
-      if (Vector3.Distance(m_navAgent.destination, transform.position) < 1.0f)
-      {
-        Debug.Log("[--- DEBUG ---] Fish arrived at destination.");
-        __DEBUG__MovementIndex = __DEBUG__MovementIndex == __DEBUG__MovementTargetsTest.Length - 1 ? 0 : __DEBUG__MovementIndex + 1;
-        m_navAgent.destination = __DEBUG__MovementTargetsTest[__DEBUG__MovementIndex].position;
-      }
-    }
-#endif // UNITY_EDITOR
+// #if UNITY_EDITOR
+//     if (__DEBUG__DebugMode)
+//     {
+//       if (Vector3.Distance(m_navAgent.destination, transform.position) < 1.0f)
+//       {
+//         Debug.Log("[--- DEBUG ---] Fish arrived at destination.");
+//         __DEBUG__MovementIndex = __DEBUG__MovementIndex == __DEBUG__MovementTargetsTest.Length - 1 ? 0 : __DEBUG__MovementIndex + 1;
+//         m_navAgent.destination = __DEBUG__MovementTargetsTest[__DEBUG__MovementIndex].position;
+//       }
+//     }
+// #endif // UNITY_EDITOR
   }
 
   private void OnCollisionEnter(Collision collision)
   {
-    if (collision.gameObject.name == "Knife")
-    {
-
-
-      GetComponent<CapsuleCollider>().enabled = false;
-      m_rigidbody.isKinematic = true;
-      m_navAgent.speed = 0;
-      Death();
-    }
+    // if (collision.gameObject.name == "Knife")
+    // {
+    //   GetComponent<CapsuleCollider>().enabled = false;
+    //   m_rigidbody.isKinematic = true;
+    //   m_navAgent.speed = 0;
+    //   Death();
+    // }
   }
 
   /* ----------------------------------
   --- Overrides | Methods
 ---------------------------------- */
   public override void InteractionListen(IInteractionTriggerer triggerer) { }
+
   protected override void Death() 
   {
     m_animator.SetTrigger("Death");
     Invoke(nameof(ChangeToFood), 3.0f);
   }
-  protected override void Move() { }
+  protected override void Move()
+  {
+    
+  }
   protected override void Panic() { }
-  protected override void PlaySound() { }
 
   private void ChangeToFood()
   {

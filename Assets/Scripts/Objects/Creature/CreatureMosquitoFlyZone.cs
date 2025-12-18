@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -10,6 +12,8 @@ public class CreatureMosquitoFlyZone : MonoBehaviour
   public float Y;
   public float Z;
   public Vector3 Opposite { get; set; }
+
+  public List<Vector3> m_listPoints;
 
 #if UNITY_EDITOR
   [Header("DEBUG")]

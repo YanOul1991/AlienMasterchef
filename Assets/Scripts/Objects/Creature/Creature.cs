@@ -5,13 +5,10 @@
 
 using UnityEngine;
 using System;
-
-[RequireComponent(
-  typeof(Rigidbody))
- ]
+using Unity.Netcode;
 
 [Serializable]
-public abstract class Creature<T> : MonoBehaviour, IInteractionListener
+public abstract class Creature<T> : NetworkBehaviour, IInteractionListener
 {
   static public event Action<T> OnPanick;
   static public event Action<T> OnDeath;
@@ -23,7 +20,6 @@ public abstract class Creature<T> : MonoBehaviour, IInteractionListener
   protected abstract void Move();
   protected abstract void Panic();
   protected abstract void Death();
-  protected abstract void PlaySound();
   public abstract void InteractionListen(IInteractionTriggerer triggerer);
 
   [Serializable]
