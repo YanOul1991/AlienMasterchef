@@ -79,6 +79,14 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
       --- Overrides
   ---------------------------------- */
   public override void InteractionListen(IInteractionTriggerer triggerer){ }
+
+  void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.name == "Knife")
+    {
+      GetComponent<NetworkObject>().Despawn();
+    }
+  }
   protected override void Death()
   {
     PlayDeathSoundRpc();

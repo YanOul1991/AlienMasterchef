@@ -13,9 +13,7 @@ public class MetaController : MonoBehaviour
   [SerializeField] private GameObject _rightHandObject;
 
   [SerializeField] private LayerMask m_layerMask;
-
-  //private GameObject m_leftHandGrab;
-  //private GameObject m_rightHandGrab;
+  
 
   private bool updateToNetwork;
 

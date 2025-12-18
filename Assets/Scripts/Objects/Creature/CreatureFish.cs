@@ -50,7 +50,7 @@ public class CreatureFish : Creature<CreatureFish>
 
     Move();
   }
-  
+
   private void OnTriggerEnter(Collider other)
   {
     if (other.gameObject.name == "Knife")

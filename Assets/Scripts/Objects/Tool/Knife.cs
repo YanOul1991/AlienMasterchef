@@ -12,14 +12,6 @@ public class Knife : NetworkBehaviour
   {
     initialPosition = transform.position;
     initialRotation = transform.rotation;
-
-    // NetworkServer.OnGameStarted += () => 
-    // {
-    //   gameObject.SetActive(true);
-    //   GetComponent<NetworkObject>().Spawn();
-    // };
-
-    // gameObject.SetActive(false);
   } 
 
   public override void OnNetworkSpawn()
