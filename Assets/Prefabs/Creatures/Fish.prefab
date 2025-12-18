@@ -597,11 +597,11 @@ GameObject:
   - component: {fileID: 4796635068044176706}
   - component: {fileID: 5461484826304878735}
   - component: {fileID: 569282550273003723}
+  - component: {fileID: 5405843946295472383}
   - component: {fileID: 5620712626340133591}
   - component: {fileID: 5797783722285930135}
   - component: {fileID: 6186499160165212441}
   - component: {fileID: 2425112395441469864}
-  - component: {fileID: 5405843946295472383}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -671,6 +671,33 @@ CapsuleCollider:
   m_Height: 1.46
   m_Direction: 2
   m_Center: {x: 0, y: 0.27, z: -0.16}
+--- !u!54 &5405843946295472383
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7501894696812679839}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!195 &5620712626340133591
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -781,35 +808,8 @@ MonoBehaviour:
   <PanicMovementSpeed>k__BackingField: 5
   <FoodStateTransforms>k__BackingField:
   - interactionTool: 0
-    resultingFood: 1
-  <ResultingFood>k__BackingField: {fileID: 0}
---- !u!54 &5405843946295472383
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7501894696812679839}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+    resultingFood: 0
+  <ResultingFood>k__BackingField: {fileID: 3349938068519554931, guid: f5cad185c6915334b8806b21f47a0a47, type: 3}
 --- !u!1 &8765441339119769522
 GameObject:
   m_ObjectHideFlags: 0

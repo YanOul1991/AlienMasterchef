@@ -55,7 +55,8 @@ public class CreatureFish : Creature<CreatureFish>
   {
     if (other.gameObject.name == "Knife")
     {
-      GetComponent<NetworkObject>().Despawn(true);
+      // GetComponent<NetworkObject>().Despawn(true);
+      Death();
     }
   }
 
@@ -80,7 +81,12 @@ public class CreatureFish : Creature<CreatureFish>
   protected override void Death() 
   {
     if (!IsServer) return;
-    GetComponent<NetworkObject>().Despawn(true);
+    // SpawnResultingFood();
+    
+    NetworkServer.DeactivateGameObjectInNetwork(gameObject);
+    GameObject _food = Instantiate(ResultingFood, transform.position, transform.rotation);
+    NetworkServer.SpawnGameObjectInNetwork(_food);
+    NetworkServer.DespawnGameObjectInNetwork(gameObject);
   }
 
   protected override void Move()
@@ -93,12 +99,12 @@ public class CreatureFish : Creature<CreatureFish>
 
   protected override void Panic() { }
 
-  private void ChangeToFood()
-  {
-    GameObject instance = Instantiate(ResultingFood);
-    instance.transform.position = transform.position;
-    Destroy(gameObject);
-  }
+  // private void SpawnResultingFood()
+  // {
+  //   GameObject instance = Instantiate(ResultingFood);
+  //   instance.transform.position = transform.position;
+  //   Destroy(gameObject);
+  // }
 
   private IEnumerator CheckForDestination()
   {

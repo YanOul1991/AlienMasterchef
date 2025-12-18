@@ -204,4 +204,37 @@ public class NetworkServer : NetworkBehaviour
   {
     OnGameStarted?.Invoke();
   }
+
+  public static void SpawnGameObjectInNetwork(GameObject _gameObject)
+  {
+    if (_gameObject.TryGetComponent(out NetworkObject networkObject))
+    {
+      networkObject.Spawn(true);
+    }
+  }
+
+  public static void DespawnGameObjectInNetwork(GameObject _gameObject)
+  {
+    if (_gameObject.TryGetComponent(out NetworkObject networkObject))
+    {
+      networkObject.Despawn(true);
+    }
+  }
+
+  public static void DeactivateGameObjectInNetwork(GameObject _gameObject)
+  {
+    if (_gameObject.TryGetComponent(out NetworkObject networkObject))
+      Singleton.DeactivateObjRpc(networkObject.NetworkObjectId);
+#if UNITY_EDITOR
+    else
+      Debug.LogWarning($"The object {_gameObject} is not a NetworkObject");
+#endif
+  }
+
+  [Rpc(SendTo.ClientsAndHost)]
+  private void DeactivateObjRpc(ulong id)
+  {
+    NetworkObject _target = NetworkManager.Singleton.SpawnManager.SpawnedObjects[id];
+    _target.gameObject.SetActive(false);
+  }
 }
