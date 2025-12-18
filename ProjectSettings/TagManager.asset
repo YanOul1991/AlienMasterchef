@@ -3,16 +3,32 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - QDSUIBackplateGradient
+  - QDSUISharedThemeColor
+  - QDSUIPrimaryButton
+  - QDSUIAccentColor
+  - QDSUITextInvertedColor
+  - QDSUITextSecondaryInvertedColor
+  - QDSUISecondaryButton
+  - QDSUIIcon
+  - QDSUITooltip
+  - QDSUIToggleButton
+  - QDSUITextSecondaryColor
+  - QDSUIToggleBorderlessButton
+  - QDSUISection
+  - QDSUIBorderlessButton
+  - QDSUIToggleSwitch
+  - Hand
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Overlay UI
+  - 
   - Water
   - UI
-  - 
-  - 
+  - Grabable
+  - Grabber
   - 
   - 
   - 
