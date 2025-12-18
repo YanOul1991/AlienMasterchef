@@ -453,7 +453,7 @@ MonoBehaviour:
     requiredState: 1
     resultingState: 3
   currentIngredient:
-    baseIngredient: 1
+    baseIngredient: 0
     state: 1
     originalStateObject: {fileID: 0}
     choppedStateObject: {fileID: 3326037188460483040}

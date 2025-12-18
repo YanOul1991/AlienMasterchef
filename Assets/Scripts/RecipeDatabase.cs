@@ -30,15 +30,16 @@ public static class RecipeDatabase
         onigiri.requiredIngredients.Add(new Ingredient(EBaseIngredient.Rice, EIngredientState.Cooked));
         recipes.Add(EMeal.Onigiri, onigiri);
 
-        // Chicken Nuggets
-        var chickenNugget = new Recipe(EMeal.ChickenNugget);
-        chickenNugget.requiredIngredients.Add(new Ingredient(EBaseIngredient.Chicken, EIngredientState.Fried));
-        recipes.Add(EMeal.ChickenNugget, chickenNugget);
+        // Bug Nuggets
+        var bugNuggets = new Recipe(EMeal.BugNuggets);
+        bugNuggets.requiredIngredients.Add(new Ingredient(EBaseIngredient.BugMeat, EIngredientState.Fried));
+        recipes.Add(EMeal.BugNuggets, bugNuggets);
 
-        // Meatballs
-        var meatballs = new Recipe(EMeal.Meatballs);
-        meatballs.requiredIngredients.Add(new Ingredient(EBaseIngredient.Beef, EIngredientState.Cooked));
-        recipes.Add(EMeal.Meatballs, meatballs);
+        // Meat Mushrooms
+        var meatMushrooms = new Recipe(EMeal.MeatMushrooms);
+        meatMushrooms.requiredIngredients.Add(new Ingredient(EBaseIngredient.Beef, EIngredientState.Cooked));
+        meatMushrooms.requiredIngredients.Add(new Ingredient(EBaseIngredient.Mushroom, EIngredientState.Cooked));
+        recipes.Add(EMeal.MeatMushrooms, meatMushrooms);
 
         // Taco
         var taco = new Recipe(EMeal.Taco);
