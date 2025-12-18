@@ -22,7 +22,6 @@ public class NetworkServer : NetworkBehaviour
   private Dictionary<ulong, GameObject[]> m_connectedPlayers;
   public static Action OnGameStarted;
 
-
 #if UNITY_EDITOR
   [Header("Debug")]
   [SerializeField] private bool _DebugMode;
@@ -122,8 +121,11 @@ public class NetworkServer : NetworkBehaviour
 
     for (int i = 0; i < 5; i++)
     {
-      GameObject _goInstance = Instantiate(m_prefabMosquito);
-      _goInstance.GetComponent<NetworkObject>().Spawn();
+      GameObject _mosquitoInstance = Instantiate(m_prefabMosquito);
+      GameObject _fishInstance = Instantiate(m_prefabFish);
+
+      _mosquitoInstance.GetComponent<NetworkObject>().Spawn();
+      _fishInstance.GetComponent<NetworkObject>().Spawn();
     }
 
     OnGameStartedRpc();

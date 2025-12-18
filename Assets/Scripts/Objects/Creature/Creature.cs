@@ -7,6 +7,9 @@ using UnityEngine;
 using System;
 using Unity.Netcode;
 
+[RequireComponent(typeof(
+  NetworkObject
+))]
 [Serializable]
 public abstract class Creature<T> : NetworkBehaviour, IInteractionListener
 {

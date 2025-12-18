@@ -662,7 +662,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3571175831
+  GlobalObjectIdHash: 3402337723
   InScenePlacedSourceGlobalObjectIdHash: 3402337723
   DeferredDespawnTick: 0
   Ownership: 1
@@ -776,14 +776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CreatureFish
   ShowTopMostFoldoutHeaderGroup: 1
-  __DEBUG__DebugMode: 1
-  __DEBUG__MovementTargetsTest:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  __DEBUG__MovementIndex: 0
   <BaseMovementSpeed>k__BackingField: 2
   <PanicMovementSpeed>k__BackingField: 5
   <FoodStateTransforms>k__BackingField:

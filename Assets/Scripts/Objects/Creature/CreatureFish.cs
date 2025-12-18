@@ -8,18 +8,13 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;*/
 
+using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class CreatureFish : Creature<CreatureFish>
 {
-#if UNITY_EDITOR
-  [Header("DEBUGGING")]
-  public bool __DEBUG__DebugMode;
-  public Transform[] __DEBUG__MovementTargetsTest;
-  public int __DEBUG__MovementIndex;
-#endif
-
   /* ----------------------------------
     --- Overrides | Fields
   ---------------------------------- */
@@ -28,6 +23,8 @@ public class CreatureFish : Creature<CreatureFish>
   [field: SerializeField] public override FoodStateTransform[] FoodStateTransforms { get; protected set; }
   [field: SerializeField] public override GameObject ResultingFood { get; protected set; }
 
+  private static readonly WaitForSeconds s_DestinationCheckRate = new(0.01f);
+
   /* *******************
      * Components
   ******************* */
@@ -35,18 +32,11 @@ public class CreatureFish : Creature<CreatureFish>
   private Rigidbody m_rigidbody;
   private Animator m_animator;
 
-  public void Start()
+  public void Awake()
   {
     m_animator = GetComponent<Animator>();
     m_navAgent = GetComponent<NavMeshAgent>();
     m_rigidbody = GetComponent<Rigidbody>();
-
-#if UNITY_EDITOR
-    if (__DEBUG__DebugMode) {
-      __DEBUG__MovementIndex = 0;
-      m_navAgent.destination = __DEBUG__MovementTargetsTest[__DEBUG__MovementIndex].position;
-    }
-#endif // UNITY_EDITOR
   }
 
   public override void OnNetworkSpawn()
@@ -57,48 +47,50 @@ public class CreatureFish : Creature<CreatureFish>
     {
       m_navAgent.enabled = false;
     }
+
+    Move();
+  }
+  
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.name == "Knife")
+    {
+      GetComponent<NetworkObject>().Despawn(true);
+    }
   }
 
-  private void Update()
+  private Vector3 GetRandomPoint()
   {
-// #if UNITY_EDITOR
-//     if (__DEBUG__DebugMode)
-//     {
-//       if (Vector3.Distance(m_navAgent.destination, transform.position) < 1.0f)
-//       {
-//         Debug.Log("[--- DEBUG ---] Fish arrived at destination.");
-//         __DEBUG__MovementIndex = __DEBUG__MovementIndex == __DEBUG__MovementTargetsTest.Length - 1 ? 0 : __DEBUG__MovementIndex + 1;
-//         m_navAgent.destination = __DEBUG__MovementTargetsTest[__DEBUG__MovementIndex].position;
-//       }
-//     }
-// #endif // UNITY_EDITOR
-  }
+    Vector3 randomPoint = Random.insideUnitSphere * 5.0f;
+    randomPoint += transform.position;
 
-  private void OnCollisionEnter(Collision collision)
-  {
-    // if (collision.gameObject.name == "Knife")
-    // {
-    //   GetComponent<CapsuleCollider>().enabled = false;
-    //   m_rigidbody.isKinematic = true;
-    //   m_navAgent.speed = 0;
-    //   Death();
-    // }
+    if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
+    {
+      return hit.position;
+    }
+
+    return transform.position;
   }
 
   /* ----------------------------------
-  --- Overrides | Methods
----------------------------------- */
+    --- Overrides | Methods
+  ---------------------------------- */
   public override void InteractionListen(IInteractionTriggerer triggerer) { }
 
   protected override void Death() 
   {
-    m_animator.SetTrigger("Death");
-    Invoke(nameof(ChangeToFood), 3.0f);
+    if (!IsServer) return;
+    GetComponent<NetworkObject>().Despawn(true);
   }
+
   protected override void Move()
   {
-    
+    if (!IsServer) return;
+
+    m_navAgent.destination = GetRandomPoint();
+    StartCoroutine(CheckForDestination());
   }
+
   protected override void Panic() { }
 
   private void ChangeToFood()
@@ -106,5 +98,17 @@ public class CreatureFish : Creature<CreatureFish>
     GameObject instance = Instantiate(ResultingFood);
     instance.transform.position = transform.position;
     Destroy(gameObject);
+  }
+
+  private IEnumerator CheckForDestination()
+  {
+    while (Vector3.Distance(m_navAgent.destination, transform.position) > 0.1f)
+    {
+      yield return null;
+    }
+
+    yield return new WaitForSeconds(Random.Range(0, 2.0f));
+    Move();
+    yield break;
   }
 }
