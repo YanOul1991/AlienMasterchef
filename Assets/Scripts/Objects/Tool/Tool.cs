@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public abstract class Tool : MonoBehaviour, IInteractionTriggerer
+public class Tool : MonoBehaviour
 {
-  public abstract Food[] InteractableFoods {  get; protected set; }
-  public abstract void IInteractionTrigger(IInteractionListener listener);
+  public EToolType eToolType;
+  public EToolType GetToolType()
+  {
+    return eToolType;
+  }
 }
