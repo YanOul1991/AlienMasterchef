@@ -52,7 +52,6 @@ public class NetworkServer : NetworkBehaviour
       yield return null;
 
     networkManager = NetworkManager.Singleton;
-    // Invoke(nameof(StartMatchmaking), 5.0f);
 #if UNITY_EDITOR
     _MatchmakingStartButton.onClick.AddListener(StartMatchmaking);
 #endif

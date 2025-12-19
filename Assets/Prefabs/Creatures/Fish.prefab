@@ -806,10 +806,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   <BaseMovementSpeed>k__BackingField: 2
   <PanicMovementSpeed>k__BackingField: 5
-  <FoodStateTransforms>k__BackingField:
-  - interactionTool: 0
-    resultingFood: 0
-  <ResultingFood>k__BackingField: {fileID: 3349938068519554931, guid: f5cad185c6915334b8806b21f47a0a47, type: 3}
+  <ResultingFood>k__BackingField: {fileID: 4702015625441022367, guid: 86f02cd8f38d01848892e080fc252b1a, type: 3}
 --- !u!1 &8765441339119769522
 GameObject:
   m_ObjectHideFlags: 0
