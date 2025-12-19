@@ -9,10 +9,11 @@ public class SpawnerManager : MonoBehaviour
 
   void OnCollisionEnter(Collision collision)
   {
+    Debug.Log("[---- SpawnManager ----] COLLISION ENTER triggered");
     if (!NetworkServer.IsGameRunning) return;
     if (!NetworkServer.Singleton.IsServer) return;
 
-    if (CompareTag(collision.gameObject.tag))
+    if (collision.gameObject.CompareTag("Hand"))
     {
       if (m_spawningObject.TryGetComponent(out NetworkObject network))
       {
@@ -25,10 +26,11 @@ public class SpawnerManager : MonoBehaviour
 
   void OnTriggerEnter(Collider collision)
   {
+    Debug.Log("[---- SpawnManager ----] TRIGGER ENTER triggered");
     if (!NetworkServer.IsGameRunning) return;
     if (!NetworkServer.Singleton.IsServer) return;
 
-    if (CompareTag(collision.gameObject.tag))
+    if (collision.gameObject.CompareTag("Hand"))
     {
       if (m_spawningObject.TryGetComponent(out NetworkObject network))
       {
