@@ -59,16 +59,32 @@ public class Food : NetworkBehaviour
   void OnTriggerEnter(Collider other)
   {
     if (other.gameObject.TryGetComponent(out Tool tool))
-  {
-   Debug.Log($"<color=orange>[---- FOOD ----]Collided with Tool</color>");
-   TransformFoodRpc(tool.GetToolType());
+    {
+      Debug.Log($"<color=orange>[---- FOOD ----] TRIGGER with Tool</color>");
+      TransformFoodRpc(tool.GetToolType());
+    }
   }
+
+  void OnCollisionEnter(Collision collision)
+  {
+    if (collision.gameObject.TryGetComponent(out Tool tool))
+    {
+      Debug.Log($"<color=orange>[---- FOOD ----] COLLISION with Tool</color>");
+      TransformFoodRpc(tool.GetToolType());
+    }
   }
 
   void FixedUpdate()
   {
     if (transform.position.y < -15)
-   transform.position = m_validPosition;
+    {
+      if(TryGetComponent(out Rigidbody rb))
+      {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        transform.position = m_validPosition;
+      }
+    }
   }
 
   [Rpc(SendTo.ClientsAndHost)]

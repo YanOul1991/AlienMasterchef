@@ -10,6 +10,9 @@ public class NetworkServer : NetworkBehaviour
   public static NetworkServer Singleton;
   private static readonly NetworkMatchmaking matchmaking = new();
   private static bool isMatchmakingRunning = false;
+  public static bool IsGameRunning { get; private set;} = false;
+  public static Action OnGameStarted;
+
   private NetworkManager networkManager;
 
   [Header("NetworkPrefabs")]
@@ -19,7 +22,6 @@ public class NetworkServer : NetworkBehaviour
   [SerializeField] private GameObject m_prefabFish;
 
   private Dictionary<ulong, GameObject[]> m_connectedPlayers;
-  public static Action OnGameStarted;
 
 #if UNITY_EDITOR
   [Header("Debug")]
@@ -203,14 +205,15 @@ public class NetworkServer : NetworkBehaviour
   {
     Debug.Log("<color=green>[----- NetworkManager -----] GAME HAS STARTED");
     OnGameStarted?.Invoke();
+    IsGameRunning = true;
   }
 
   public void SpawnGameObjectInNetwork(GameObject _gameObject)
   {
+    if (!IsServer) return;
+
     if (_gameObject.TryGetComponent(out NetworkObject networkObject))
-    {
       networkObject.Spawn(true);
-    }
   }
 
   public void DespawnGameObjectInNetwork(GameObject _gameObject)
@@ -218,9 +221,8 @@ public class NetworkServer : NetworkBehaviour
     if (!IsServer) return;
 
     if (_gameObject.TryGetComponent(out NetworkObject networkObject))
-    {
-      networkObject.Despawn(true);
-    }
+      if (networkObject.IsSpawned) 
+        networkObject.Despawn(true);
   }
 
   public void DeactivateGameObjectInNetwork(GameObject _gameObject)

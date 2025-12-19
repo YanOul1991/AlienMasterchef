@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7444181122707939910}
   - component: {fileID: 6018436988839848959}
   - component: {fileID: 454079891523350148}
+  - component: {fileID: 4697377211716334760}
   m_Layer: 6
   m_Name: Knife
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.024, y: 0.397, z: 0.168}
-  m_LocalScale: {x: 0.015, y: 0.03, z: 0.35}
+  m_LocalScale: {x: 0.025, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -198,3 +199,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Knife
   ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &4697377211716334760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564173217297554807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed98422b7d754d44b4ea7df53d93a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tool
+  eToolType: 0
