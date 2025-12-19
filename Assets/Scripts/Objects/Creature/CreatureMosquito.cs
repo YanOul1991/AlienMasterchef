@@ -80,14 +80,17 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
 
   void OnTriggerEnter(Collider other)
   {
-    if (other.gameObject.name == "Knife")
-    {
-      GetComponent<NetworkObject>().Despawn();
-    }
+    if (other.gameObject.name == "Knife") Death();
   }
   protected override void Death()
   {
+    if (!IsServer) return;
+
     PlayDeathSoundRpc();
+    NetworkServer.Singleton.DeactivateGameObjectInNetwork(gameObject);
+    GameObject _food = Instantiate(ResultingFood, transform.position, transform.rotation);
+    NetworkServer.Singleton.SpawnGameObjectInNetwork(_food);
+    NetworkServer.Singleton.DespawnGameObjectInNetwork(gameObject);
   }
 
   protected override void Move()

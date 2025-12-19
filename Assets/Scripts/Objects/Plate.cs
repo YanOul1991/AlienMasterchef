@@ -61,6 +61,8 @@ public class Plate : NetworkBehaviour
 
           foreach (NetworkObject netObj in networkObjects) 
             NetworkServer.Singleton.DespawnGameObjectInNetwork(netObj.gameObject);
+
+          OrderManager.Singleton.CreateRandomOrder();
         }
       }
     }
