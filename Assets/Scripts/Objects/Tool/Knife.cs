@@ -2,7 +2,10 @@ using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
 
-[RequireComponent(typeof(NetworkObject), typeof(NetworkTransform))]
+[RequireComponent(
+  typeof(NetworkObject), 
+  typeof(NetworkTransform))
+]
 public class Knife : NetworkBehaviour
 {
   private Vector3 initialPosition;
@@ -13,16 +16,22 @@ public class Knife : NetworkBehaviour
     initialPosition = transform.position;
     initialRotation = transform.rotation;
   } 
-
+  
   public override void OnNetworkSpawn()
   {
     base.OnNetworkSpawn();
-    Debug.Log("Knife has spawned");
 
     if(IsServer)
     {
-      gameObject.AddComponent<Rigidbody>();
-      GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+      if (TryGetComponent(out Rigidbody _rb))
+      {
+        _rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+      }
+      else
+      {
+        _rb = gameObject.AddComponent<Rigidbody>();
+        _rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+      }
     }
   }
 

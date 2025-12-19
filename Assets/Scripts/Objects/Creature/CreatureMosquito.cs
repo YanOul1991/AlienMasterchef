@@ -26,7 +26,6 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
   ---------------------------------- */
   [field: SerializeField] public override float BaseMovementSpeed { get; protected set; }
   [field: SerializeField] public override float PanicMovementSpeed { get; protected set; }
-  [field: SerializeField] public override FoodStateTransform[] FoodStateTransforms { get; protected set; }
   [field: SerializeField] public override GameObject ResultingFood { get; protected set; }
   public static void SetFlyZoneData(CreatureMosquitoFlyZone zone) => flyZoneData = zone;
 
@@ -78,7 +77,6 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
   /* ----------------------------------
       --- Overrides
   ---------------------------------- */
-  public override void InteractionListen(IInteractionTriggerer triggerer){ }
 
   void OnTriggerEnter(Collider other)
   {

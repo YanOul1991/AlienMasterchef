@@ -11,24 +11,15 @@ using Unity.Netcode;
   NetworkObject
 ))]
 [Serializable]
-public abstract class Creature<T> : NetworkBehaviour, IInteractionListener
+public abstract class Creature<T> : NetworkBehaviour
 {
   static public event Action<T> OnPanick;
   static public event Action<T> OnDeath;
   [SerializeField] public abstract float BaseMovementSpeed { get; protected set; }
   [SerializeField] public abstract float PanicMovementSpeed { get; protected set; }
-  [SerializeField] public abstract FoodStateTransform[] FoodStateTransforms { get; protected set; }
   [SerializeField] public abstract GameObject ResultingFood { get; protected set; }
 
   protected abstract void Move();
   protected abstract void Panic();
   protected abstract void Death();
-  public abstract void InteractionListen(IInteractionTriggerer triggerer);
-
-  [Serializable]
-  public struct FoodStateTransform
-  {
-    [SerializeField] public EToolType interactionTool;
-    [SerializeField] public EBaseIngredient resultingFood;
-  }
 }
