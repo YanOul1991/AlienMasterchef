@@ -21,7 +21,7 @@ public class OrderGenerator : MonoBehaviour
     public List<OrderTicket> listTickets = new List<OrderTicket>();
     List<Plat> listActiveOrders;
 
-    //Vérification de status d'envoi -----------------
+    //Vï¿½rification de status d'envoi -----------------
     bool orderSent;
 
     //Effets sonores pour les commandes -----------------
@@ -37,11 +37,11 @@ public class OrderGenerator : MonoBehaviour
 
     void Update()
     {
-        //Générer des commandes aux 30 secondes, pour un maximum de 3 commandes à la fois
+        //Gï¿½nï¿½rer des commandes aux 30 secondes, pour un maximum de 3 commandes ï¿½ la fois
         listActiveOrders = orderManager.GetActiveOrders();
         int nbCommandes = listActiveOrders.Count;
 
-        //S'il y a moins de 3 commandes, on démarre la coroutine pour 
+        //S'il y a moins de 3 commandes, on dï¿½marre la coroutine pour 
         if (nbCommandes < 3 && !orderSent)
         {
             orderSent = true;
@@ -59,12 +59,12 @@ public class OrderGenerator : MonoBehaviour
         return V;
     }
 
-    // Coroutine pour la création de commandes aux 30 secondes
+    // Coroutine pour la crï¿½ation de commandes aux 30 secondes
     private IEnumerator GenererCommande()
     {
-        //Création de la commande aléatoirement
+        //Crï¿½ation de la commande alï¿½atoirement
         EMeal commandeAleatoire = GetRandomEnum<EMeal>();
-        orderManager.CreateOrder(commandeAleatoire);
+        // orderManager.CreateOrder(commandeAleatoire);
 
         //Affichage de la commande au comptoir (UI)
         bool commandePasse = false;
@@ -77,7 +77,7 @@ public class OrderGenerator : MonoBehaviour
             {
                 foreach (Ingredient ingredient in (RecipeDatabase.GetRecipe(commandeAleatoire).requiredIngredients))
                 {
-                    //Liste des ingrédients requis
+                    //Liste des ingrï¿½dients requis
                     print(ingredient.state);
                     print(ingredient.baseIngredient);
                 }
@@ -113,7 +113,7 @@ public class OrderGenerator : MonoBehaviour
                         break;
 
                     default:
-                        Debug.LogError("Meal type non géré : " + t.plat.mealType);
+                        Debug.LogError("Meal type non gï¿½rï¿½ : " + t.plat.mealType);
                         break;
                 }
 
@@ -139,7 +139,7 @@ public class OrderGenerator : MonoBehaviour
         orderSent = false;
     }
 
-    //Ça fonctionne, juste définir la méthode de vérification
+    //ï¿½a fonctionne, juste dï¿½finir la mï¿½thode de vï¿½rification
     void CompletionCommande(Plat order)
     {
         orderManager.CompleteOrder(order);
