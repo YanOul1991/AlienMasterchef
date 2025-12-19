@@ -31526,7 +31526,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1867297497}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1821503071222852279, guid: af2f614469c79e041a53e3bd6742ecb7, type: 3}
+        m_TargetAssemblyTypeName: NetworkServer, Assembly-CSharp
+        m_MethodName: StartMatchmaking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1867297497
 MonoBehaviour:
   m_ObjectHideFlags: 0
