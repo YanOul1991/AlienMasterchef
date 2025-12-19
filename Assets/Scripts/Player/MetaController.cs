@@ -34,7 +34,7 @@ public class MetaController : MonoBehaviour
       new NetworkPlayerDataUpdate 
       {
         rootPosition        = m_playerRoot.position,
-        rootRotation        = m_playerRoot.rotation,
+        rootRotation        =Quaternion.Euler(0, Camera.main.transform.rotation.y, 0),
         leftHandPosition    = m_leftController.position,
         leftHandRotation    = m_leftController.rotation,
         rightHandPosition   = m_rightController.position,
