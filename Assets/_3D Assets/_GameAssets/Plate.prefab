@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7958550193464478018}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Position food 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2098112216425452333}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Position food 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3545499432424530626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Position food 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,10 +104,12 @@ GameObject:
   - component: {fileID: 7048535928670018423}
   - component: {fileID: 6781622806890049425}
   - component: {fileID: 5734503899605158287}
-  - component: {fileID: 5509215019868386599}
+  - component: {fileID: 8558207119359309880}
+  - component: {fileID: 7886881961133783516}
   - component: {fileID: 1620963962200668553}
   - component: {fileID: 4560457432363909259}
-  m_Layer: 0
+  - component: {fileID: 5573359719849873213}
+  m_Layer: 6
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,8 +191,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5509215019868386599
-MeshCollider:
+--- !u!54 &8558207119359309880
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8986531702751714999}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7886881961133783516
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -207,10 +236,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7613084560423289367, guid: 7cc13f9ac2e060c4a961313f389e8329, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.33679006, y: 0.0364401, z: 0.34197003}
+  m_Center: {x: 0.0009175539, y: 0.01822005, z: 0}
 --- !u!114 &1620963962200668553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,14 +251,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 784603082
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3336922620
+  InScenePlacedSourceGlobalObjectIdHash: 1506099595
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -282,6 +310,24 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &5573359719849873213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8986531702751714999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4124a9e2507ce40b35ec26393f2fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Plate
+  ShowTopMostFoldoutHeaderGroup: 1
+  ingredientsOnPlate: []
+  instantiatePosition1: {fileID: 2098112216425452333}
+  instantiatePosition2: {fileID: 3545499432424530626}
+  instantiatePosition3: {fileID: 7958550193464478018}
+  plate: {fileID: 7048535928670018423}
 --- !u!1 &9049351070691241046
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,13 +339,14 @@ GameObject:
   - component: {fileID: 1804054296329268888}
   - component: {fileID: 6051058158999176160}
   - component: {fileID: 2410705281751203062}
-  m_Layer: 0
+  - component: {fileID: 4498637371927048724}
+  m_Layer: 6
   m_Name: IngredientCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1804054296329268888
 Transform:
   m_ObjectHideFlags: 0
@@ -332,7 +379,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.33, y: 0.096743464, z: 0.33}
   m_Center: {x: 0, y: 0.37062925, z: 0}
@@ -343,13 +390,39 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9049351070691241046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef4124a9e2507ce40b35ec26393f2fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Plate
+  ShowTopMostFoldoutHeaderGroup: 1
   ingredientsOnPlate: []
   instantiatePosition1: {fileID: 2098112216425452333}
   instantiatePosition2: {fileID: 3545499432424530626}
   instantiatePosition3: {fileID: 7958550193464478018}
   plate: {fileID: 7048535928670018423}
+--- !u!114 &4498637371927048724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9049351070691241046}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 1559908239
+  InScenePlacedSourceGlobalObjectIdHash: 1506099595
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0

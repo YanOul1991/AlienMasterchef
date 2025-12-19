@@ -4,18 +4,29 @@ using Unity.Netcode;
 using System.Collections.Generic;
 using System;
 
+[RequireComponent(typeof(NetworkObject))]
 public class OrderManager : NetworkBehaviour
 {
   public static OrderManager Singleton;
   [SerializeField] private List<Plat> activeOrders = new();
 
+#if UNITY_EDITOR
+  [field: SerializeField] public bool _debugFixedOrder;
+#endif
+
   private void Awake()
   {
     if (Singleton == null) Singleton = this;
     else Destroy(gameObject);
+  }
 
-    for (int i = 0; i < 5; i++) 
+  public void Start()
+  {
+    NetworkServer.OnGameStarted += delegate () 
+    {
       CreateRandomOrder();
+      Debug.Log("[----- OrderManager -----] GameHasStarted");
+    };
   }
 
   public override void OnDestroy()
@@ -26,38 +37,37 @@ public class OrderManager : NetworkBehaviour
 
   public void CreateRandomOrder()
   {
+    if (!IsHost) return;
+#if UNITY_EDITOR
+    Debug.Log("[----- OrderManager -----] CREATING A NEW ORDER");
+    if (_debugFixedOrder)
+    {
+      EMeal _rand = EMeal.MeatMushrooms;
+      activeOrders.Add(new Plat(_rand));
+      OrderGenerator.Singleton.GenerateTicketRpc(_rand);
+    }
+#endif
     EMeal _randEMeal = (EMeal)UnityEngine.Random.Range(0, Enum.GetNames(typeof(EMeal)).Length);
-    Debug.Log($"[---- OrderManager ----] Generated a new random order of type {_randEMeal}");
     activeOrders.Add(new Plat(_randEMeal));
+    OrderGenerator.Singleton.GenerateTicketRpc(_randEMeal);
   }
 
-  public Plat FindMatchingOrder(List<Ingredient> plateIngredients)
+  public bool CheckOrder(EMeal _meal)
   {
-    foreach (var order in activeOrders)
+#if UNITY_EDITOR
+    Debug.Log($"[---- OrderManager ---] Checking for order {_meal}");
+#endif
+    foreach (Plat order in activeOrders)
     {
-      // Créer un plat temporaire avec les ingrédients du plateau
-      Plat tempPlat = new(order.mealType);
-      foreach (var ingredient in plateIngredients) 
-        tempPlat.AddIngredient(ingredient);
-
-      // Vérifier si le plat est complet
-      if (tempPlat.IsCompleted()) 
-        return order;
+      if (order.mealType == _meal)
+      {
+#if UNITY_EDITOR
+        Debug.Log($"[---- OrderManager ---] Following order is completed {_meal}");
+#endif
+        activeOrders.Remove(order);
+        return true;
+      }
     }
-    return null;
-  }
-
-  public void CompleteOrder(Plat order)
-  {
-    if (activeOrders.Contains(order))
-    {
-      Debug.Log($"Order delivered: {order.mealType}");
-      activeOrders.Remove(order);
-    }
-  }
-
-  public List<Plat> GetActiveOrders()
-  {
-    return activeOrders;
+    return false;
   }
 }
