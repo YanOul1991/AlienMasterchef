@@ -37,13 +37,13 @@ public static class RecipeDatabase
 
         // Meat Mushrooms
         var meatMushrooms = new Recipe(EMeal.MeatMushrooms);
-        meatMushrooms.requiredIngredients.Add(new Ingredient(EBaseIngredient.Beef, EIngredientState.Cooked));
+        meatMushrooms.requiredIngredients.Add(new Ingredient(EBaseIngredient.BugMeat, EIngredientState.Cooked));
         meatMushrooms.requiredIngredients.Add(new Ingredient(EBaseIngredient.Mushroom, EIngredientState.Cooked));
         recipes.Add(EMeal.MeatMushrooms, meatMushrooms);
 
         // Taco
         var taco = new Recipe(EMeal.Taco);
-        taco.requiredIngredients.Add(new Ingredient(EBaseIngredient.Beef, EIngredientState.Cooked));
+        taco.requiredIngredients.Add(new Ingredient(EBaseIngredient.BugMeat, EIngredientState.Cooked));
         taco.requiredIngredients.Add(new Ingredient(EBaseIngredient.Lettuce, EIngredientState.Chopped));
         taco.requiredIngredients.Add(new Ingredient(EBaseIngredient.Tomato, EIngredientState.Chopped));
         recipes.Add(EMeal.Taco, taco);
