@@ -1,8 +1,9 @@
 using UnityEngine;
+using Unity.Netcode;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Plate : MonoBehaviour
+public class Plate : NetworkBehaviour
 {
     [SerializeField] private List<Ingredient> ingredientsOnPlate = new List<Ingredient>();
     [SerializeField] private Transform instantiatePosition1;
@@ -14,46 +15,34 @@ public class Plate : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Food food = collision.GetComponent<Food>();
-        if (food != null)
-        {
-            Ingredient ingredient = food.GetIngredient();
-            ingredientsOnPlate.Add(ingredient);
-            Debug.Log($"Ingredient added to plate: {ingredient}");
-            
-            // Vérifier si un repas est complet après chaque ajout
-            CheckForCompletedMeal();
-            
-            // Get the current position to use
-            Transform currentPosition = GetNextPosition();
-            
-            // Instantiate the GameObject at the current position
-            GameObject newInstance;
-            if (currentPosition != null)
-            {
-                Vector3 spawnPosition = currentPosition.position + new Vector3(0, 0.015f, 0);
-                newInstance = Instantiate(collision.gameObject, spawnPosition, currentPosition.rotation);
-            }
-            else
-            {
-                newInstance = Instantiate(collision.gameObject, collision.transform.position, collision.transform.rotation);
-            }
+        if (!IsServer) return;
 
-            Rigidbody rb = newInstance.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
+        if (collision.TryGetComponent(out Food _food))
+        {
+            GameObject _targetObject = collision.gameObject;
+
+            Ingredient ingredient = _food.GetIngredient()   ;
+            ingredientsOnPlate.Add(ingredient);
+
+            CheckForCompletedMeal();
+
+            Transform currentPosition = GetNextPosition();
+            if (currentPosition != null)
+                _targetObject.transform.SetPositionAndRotation(currentPosition.position + (Vector3.up * 0.015f), currentPosition.rotation);
+            else
+                _targetObject.transform.SetPositionAndRotation(collision.transform.position, collision.transform.rotation);
+
+            _targetObject.transform.SetParent(plate);
+
+            if (_targetObject.TryGetComponent(out Rigidbody rb)) 
                 Destroy(rb);
-            }
-            
-            newInstance.gameObject.transform.SetParent(plate);
-            
-            Food foodScript = newInstance.GetComponent<Food>();
-            if (foodScript != null)
-            {
-                Destroy(foodScript);
-            }
-            
-            Destroy(collision.gameObject);
+
+            Collider[] colliders = _targetObject.GetComponentsInChildren<Collider>();
+
+            foreach (Collider collider in colliders) 
+                Destroy(collider);
+
+            Destroy(_food);
             
             currentPositionIndex++;
         }
