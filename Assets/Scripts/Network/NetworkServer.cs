@@ -221,9 +221,8 @@ public class NetworkServer : NetworkBehaviour
     if (!IsServer) return;
 
     if (_gameObject.TryGetComponent(out NetworkObject networkObject))
-    {
-      networkObject.Despawn(true);
-    }
+      if (networkObject.IsSpawned) 
+        networkObject.Despawn(true);
   }
 
   public void DeactivateGameObjectInNetwork(GameObject _gameObject)
