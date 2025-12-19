@@ -87,7 +87,13 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
   }
   protected override void Death()
   {
+    if (!IsServer) return;
+    
     PlayDeathSoundRpc();
+    NetworkServer.Singleton.DeactivateGameObjectInNetwork(gameObject);
+    GameObject _food = Instantiate(ResultingFood, transform.position, transform.rotation);
+    NetworkServer.Singleton.SpawnGameObjectInNetwork(_food);
+    NetworkServer.Singleton.DespawnGameObjectInNetwork(gameObject);
   }
 
   protected override void Move()

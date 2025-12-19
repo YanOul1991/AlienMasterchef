@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 926627203690724166}
+  - component: {fileID: 4066184863492917860}
   - component: {fileID: 6206208469611023182}
   - component: {fileID: 2913200394017327922}
   - component: {fileID: 1216312931320593565}
   - component: {fileID: 7609661125382869923}
-  - component: {fileID: 4066184863492917860}
   - component: {fileID: 4737987501718687447}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Meat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,6 +41,31 @@ Transform:
   - {fileID: 6938935004183532252}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4066184863492917860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925499374877385219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 643468122
+  InScenePlacedSourceGlobalObjectIdHash: 643468122
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &6206208469611023182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,31 +165,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.19468272, y: 0.08638525, z: 0.16325235}
   m_Center: {x: -0.04348141, y: 0.042336345, z: -0.003998995}
---- !u!114 &4066184863492917860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925499374877385219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3744974942
-  InScenePlacedSourceGlobalObjectIdHash: 643468122
-  DeferredDespawnTick: 0
-  Ownership: 1
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 0
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
-  SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 0
 --- !u!114 &4737987501718687447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 6938935004183532252}
   - component: {fileID: 8321190236138194577}
   - component: {fileID: 2693027597888003281}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ISDK_HandGrabInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,6 +373,10 @@ PrefabInstance:
       value: Cooked_groundBeef
       objectReference: {fileID: 0}
     - target: {fileID: 5182101408359990397, guid: 1cadb7e9b63d1484db6a657066fdcd48, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182101408359990397, guid: 1cadb7e9b63d1484db6a657066fdcd48, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -402,6 +406,10 @@ PrefabInstance:
     - target: {fileID: 227577062100369360, guid: 78aa69274795dd6458edadb8e3efe5c3, type: 3}
       propertyPath: m_Name
       value: Original_Meat
+      objectReference: {fileID: 0}
+    - target: {fileID: 227577062100369360, guid: 78aa69274795dd6458edadb8e3efe5c3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 604419740692424042, guid: 78aa69274795dd6458edadb8e3efe5c3, type: 3}
       propertyPath: m_LocalScale.x
@@ -533,6 +541,10 @@ PrefabInstance:
     - target: {fileID: 6808599801469802662, guid: 714cbdecdcb0a4645891357863b99738, type: 3}
       propertyPath: m_Name
       value: Chopped_groundBeef
+      objectReference: {fileID: 0}
+    - target: {fileID: 6808599801469802662, guid: 714cbdecdcb0a4645891357863b99738, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6808599801469802662, guid: 714cbdecdcb0a4645891357863b99738, type: 3}
       propertyPath: m_IsActive
