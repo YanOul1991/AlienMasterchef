@@ -296,7 +296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: COMMENCER LA PARTIE
+  m_text: CONNEXION
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 688a89aa88beb074d9b812ac26ff3cdf, type: 2}
   m_sharedMaterial: {fileID: -6006348753196398293, guid: 688a89aa88beb074d9b812ac26ff3cdf, type: 2}
@@ -1038,7 +1038,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 6.828, y: 1.696}
+  m_AnchoredPosition: {x: 6.828003, y: 1.6959839}
   m_SizeDelta: {x: 1.92, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2882123292918192692
@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &362908006554923335
 MonoBehaviour:
   m_ObjectHideFlags: 0
