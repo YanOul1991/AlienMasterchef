@@ -29184,154 +29184,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7848a1f07bea8414cbc97b40228beea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CreatureFishMeshPoints
-  sizes: {x: 3, y: 0.25, z: 3}
-  pointSpacing: 0.25
+  sizes: {x: 2, y: 0.25, z: 2}
+  pointSpacing: 1
   points:
-  - {x: -5, y: 0, z: 2}
-  - {x: -4.75, y: 0, z: 2}
-  - {x: -4.5, y: 0, z: 2}
-  - {x: -4.25, y: 0, z: 2}
-  - {x: -4, y: 0, z: 2}
-  - {x: -3.75, y: 0, z: 2}
-  - {x: -3.5, y: 0, z: 2}
-  - {x: -3.25, y: 0, z: 2}
-  - {x: -3, y: 0, z: 2}
-  - {x: -2.75, y: 0, z: 2}
-  - {x: -2.5, y: 0, z: 2}
-  - {x: -2.25, y: 0, z: 2}
-  - {x: -5, y: 0, z: 2.25}
-  - {x: -4.75, y: 0, z: 2.25}
-  - {x: -4.5, y: 0, z: 2.25}
-  - {x: -4.25, y: 0, z: 2.25}
-  - {x: -4, y: 0, z: 2.25}
-  - {x: -3.75, y: 0, z: 2.25}
-  - {x: -3.5, y: 0, z: 2.25}
-  - {x: -3.25, y: 0, z: 2.25}
-  - {x: -3, y: 0, z: 2.25}
-  - {x: -2.75, y: 0, z: 2.25}
-  - {x: -2.5, y: 0, z: 2.25}
-  - {x: -2.25, y: 0, z: 2.25}
-  - {x: -5, y: 0, z: 2.5}
-  - {x: -4.75, y: 0, z: 2.5}
-  - {x: -4.5, y: 0, z: 2.5}
-  - {x: -4.25, y: 0, z: 2.5}
-  - {x: -4, y: 0, z: 2.5}
-  - {x: -3.75, y: 0, z: 2.5}
-  - {x: -3.5, y: 0, z: 2.5}
-  - {x: -3.25, y: 0, z: 2.5}
-  - {x: -3, y: 0, z: 2.5}
-  - {x: -2.75, y: 0, z: 2.5}
-  - {x: -2.5, y: 0, z: 2.5}
-  - {x: -2.25, y: 0, z: 2.5}
-  - {x: -5, y: 0, z: 2.75}
-  - {x: -4.75, y: 0, z: 2.75}
-  - {x: -4.5, y: 0, z: 2.75}
-  - {x: -4.25, y: 0, z: 2.75}
-  - {x: -4, y: 0, z: 2.75}
-  - {x: -3.75, y: 0, z: 2.75}
-  - {x: -3.5, y: 0, z: 2.75}
-  - {x: -3.25, y: 0, z: 2.75}
-  - {x: -3, y: 0, z: 2.75}
-  - {x: -2.75, y: 0, z: 2.75}
-  - {x: -2.5, y: 0, z: 2.75}
-  - {x: -2.25, y: 0, z: 2.75}
-  - {x: -5, y: 0, z: 3}
-  - {x: -4.75, y: 0, z: 3}
-  - {x: -4.5, y: 0, z: 3}
-  - {x: -4.25, y: 0, z: 3}
-  - {x: -4, y: 0, z: 3}
-  - {x: -3.75, y: 0, z: 3}
-  - {x: -3.5, y: 0, z: 3}
-  - {x: -3.25, y: 0, z: 3}
-  - {x: -3, y: 0, z: 3}
-  - {x: -2.75, y: 0, z: 3}
-  - {x: -2.5, y: 0, z: 3}
-  - {x: -2.25, y: 0, z: 3}
-  - {x: -5, y: 0, z: 3.25}
-  - {x: -4.75, y: 0, z: 3.25}
-  - {x: -4.5, y: 0, z: 3.25}
-  - {x: -4.25, y: 0, z: 3.25}
-  - {x: -4, y: 0, z: 3.25}
-  - {x: -3.75, y: 0, z: 3.25}
-  - {x: -3.5, y: 0, z: 3.25}
-  - {x: -3.25, y: 0, z: 3.25}
-  - {x: -3, y: 0, z: 3.25}
-  - {x: -2.75, y: 0, z: 3.25}
-  - {x: -2.5, y: 0, z: 3.25}
-  - {x: -2.25, y: 0, z: 3.25}
-  - {x: -5, y: 0, z: 3.5}
-  - {x: -4.75, y: 0, z: 3.5}
-  - {x: -4.5, y: 0, z: 3.5}
-  - {x: -4.25, y: 0, z: 3.5}
-  - {x: -4, y: 0, z: 3.5}
-  - {x: -3.75, y: 0, z: 3.5}
-  - {x: -3.5, y: 0, z: 3.5}
-  - {x: -3.25, y: 0, z: 3.5}
-  - {x: -3, y: 0, z: 3.5}
-  - {x: -2.75, y: 0, z: 3.5}
-  - {x: -2.5, y: 0, z: 3.5}
-  - {x: -2.25, y: 0, z: 3.5}
-  - {x: -5, y: 0, z: 3.75}
-  - {x: -4.75, y: 0, z: 3.75}
-  - {x: -4.5, y: 0, z: 3.75}
-  - {x: -4.25, y: 0, z: 3.75}
-  - {x: -4, y: 0, z: 3.75}
-  - {x: -3.75, y: 0, z: 3.75}
-  - {x: -3.5, y: 0, z: 3.75}
-  - {x: -3.25, y: 0, z: 3.75}
-  - {x: -3, y: 0, z: 3.75}
-  - {x: -2.75, y: 0, z: 3.75}
-  - {x: -2.5, y: 0, z: 3.75}
-  - {x: -2.25, y: 0, z: 3.75}
-  - {x: -5, y: 0, z: 4}
-  - {x: -4.75, y: 0, z: 4}
-  - {x: -4.5, y: 0, z: 4}
-  - {x: -4.25, y: 0, z: 4}
-  - {x: -4, y: 0, z: 4}
-  - {x: -3.75, y: 0, z: 4}
-  - {x: -3.5, y: 0, z: 4}
-  - {x: -3.25, y: 0, z: 4}
-  - {x: -3, y: 0, z: 4}
-  - {x: -2.75, y: 0, z: 4}
-  - {x: -2.5, y: 0, z: 4}
-  - {x: -2.25, y: 0, z: 4}
-  - {x: -5, y: 0, z: 4.25}
-  - {x: -4.75, y: 0, z: 4.25}
-  - {x: -4.5, y: 0, z: 4.25}
-  - {x: -4.25, y: 0, z: 4.25}
-  - {x: -4, y: 0, z: 4.25}
-  - {x: -3.75, y: 0, z: 4.25}
-  - {x: -3.5, y: 0, z: 4.25}
-  - {x: -3.25, y: 0, z: 4.25}
-  - {x: -3, y: 0, z: 4.25}
-  - {x: -2.75, y: 0, z: 4.25}
-  - {x: -2.5, y: 0, z: 4.25}
-  - {x: -2.25, y: 0, z: 4.25}
-  - {x: -5, y: 0, z: 4.5}
-  - {x: -4.75, y: 0, z: 4.5}
-  - {x: -4.5, y: 0, z: 4.5}
-  - {x: -4.25, y: 0, z: 4.5}
-  - {x: -4, y: 0, z: 4.5}
-  - {x: -3.75, y: 0, z: 4.5}
-  - {x: -3.5, y: 0, z: 4.5}
-  - {x: -3.25, y: 0, z: 4.5}
-  - {x: -3, y: 0, z: 4.5}
-  - {x: -2.75, y: 0, z: 4.5}
-  - {x: -2.5, y: 0, z: 4.5}
-  - {x: -2.25, y: 0, z: 4.5}
-  - {x: -5, y: 0, z: 4.75}
-  - {x: -4.75, y: 0, z: 4.75}
-  - {x: -4.5, y: 0, z: 4.75}
-  - {x: -4.25, y: 0, z: 4.75}
-  - {x: -4, y: 0, z: 4.75}
-  - {x: -3.75, y: 0, z: 4.75}
-  - {x: -3.5, y: 0, z: 4.75}
-  - {x: -3.25, y: 0, z: 4.75}
-  - {x: -3, y: 0, z: 4.75}
-  - {x: -2.75, y: 0, z: 4.75}
-  - {x: -2.5, y: 0, z: 4.75}
-  - {x: -2.25, y: 0, z: 4.75}
-  gizmosRadius: 0.02
+  - {x: -12, y: 0, z: 1}
+  - {x: -11, y: 0, z: 1}
+  - {x: -12, y: 0, z: 2}
+  - {x: -11, y: 0, z: 2}
+  gizmosRadius: 0.025
 --- !u!4 &1763687858
 Transform:
   m_ObjectHideFlags: 0
@@ -29341,7 +29201,7 @@ Transform:
   m_GameObject: {fileID: 1763687856}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 2}
+  m_LocalPosition: {x: -12, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32609,25 +32469,9 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3336922620
       objectReference: {fileID: 0}
-    - target: {fileID: 1620963962200668553, guid: 461755c1c3f0db34c8b02e422c33a12f, type: 3}
-      propertyPath: SceneMigrationSynchronization
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1620963962200668553, guid: 461755c1c3f0db34c8b02e422c33a12f, type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 1506099595
-      objectReference: {fileID: 0}
     - target: {fileID: 4498637371927048724, guid: 461755c1c3f0db34c8b02e422c33a12f, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1559908239
-      objectReference: {fileID: 0}
-    - target: {fileID: 4498637371927048724, guid: 461755c1c3f0db34c8b02e422c33a12f, type: 3}
-      propertyPath: SceneMigrationSynchronization
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4498637371927048724, guid: 461755c1c3f0db34c8b02e422c33a12f, type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 1506099595
       objectReference: {fileID: 0}
     - target: {fileID: 7048535928670018423, guid: 461755c1c3f0db34c8b02e422c33a12f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32672,10 +32516,6 @@ PrefabInstance:
     - target: {fileID: 8986531702751714999, guid: 461755c1c3f0db34c8b02e422c33a12f, type: 3}
       propertyPath: m_Name
       value: Plate
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049351070691241046, guid: 461755c1c3f0db34c8b02e422c33a12f, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

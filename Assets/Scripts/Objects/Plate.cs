@@ -36,16 +36,14 @@ public class Plate : NetworkBehaviour
 
       _targetObject.transform.SetParent(plate);
 
+      if (_targetObject.TryGetComponent(out Collider _collider))
+        Destroy(_collider);
+
       if (_targetObject.TryGetComponent(out Rigidbody rb))
         Destroy(rb);
 
-      Collider[] colliders = _targetObject.GetComponentsInChildren<Collider>();
-
-      foreach (Collider collider in colliders)
-        Destroy(collider);
-
       Destroy(_food);
-      
+
       currentPositionIndex++;
     }
 
@@ -65,6 +63,39 @@ public class Plate : NetworkBehaviour
             NetworkServer.Singleton.DespawnGameObjectInNetwork(netObj.gameObject);
         }
       }
+    }
+  }
+  
+  void OnCollisionEnter(Collision collision)
+  {
+    if (!IsServer) return;
+
+    if (collision.gameObject.TryGetComponent(out Food _food))
+    {
+      GameObject _targetObject = collision.gameObject;
+
+      Ingredient ingredient = _food.GetIngredient();
+      ingredientsOnPlate.Add(ingredient);
+
+      CheckForCompletedMeal();
+
+      Transform currentPosition = GetNextPosition();
+      if (currentPosition != null)
+        _targetObject.transform.SetPositionAndRotation(currentPosition.position + (Vector3.up * 0.015f), currentPosition.rotation);
+      else
+        _targetObject.transform.SetPositionAndRotation(collision.transform.position, collision.transform.rotation);
+
+      _targetObject.transform.SetParent(plate);
+
+      if (_targetObject.TryGetComponent(out Collider _collider))
+        Destroy(_collider);
+
+      if (_targetObject.TryGetComponent(out Rigidbody rb))
+        Destroy(rb);
+
+      Destroy(_food);
+
+      currentPositionIndex++;
     }
   }
 
