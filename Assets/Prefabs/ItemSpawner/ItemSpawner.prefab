@@ -395,7 +395,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ee6adf95ee10446a549da7c9f42434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerManager
-  m_spawningObject: {fileID: 5736794461152394723, guid: c9ae085911a637e4da3d7c4816ef947b, type: 3}
+  m_spawningObject: {fileID: 5177560744268350316, guid: 5dd2f41f6ecd46c4c843e9ca190bea38, type: 3}
   m_spawnPosition: {fileID: 3928540107205283819}
 --- !u!54 &2886216147742499318
 Rigidbody:
