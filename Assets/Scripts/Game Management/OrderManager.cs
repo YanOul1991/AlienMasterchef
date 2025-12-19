@@ -1,50 +1,73 @@
 // ========== OrderManager.cs ==========
 using UnityEngine;
+using Unity.Netcode;
 using System.Collections.Generic;
-using System.Linq;
+using System;
 
-public class OrderManager : MonoBehaviour
+[RequireComponent(typeof(NetworkObject))]
+public class OrderManager : NetworkBehaviour
 {
-    [SerializeField] private List<Plat> activeOrders = new List<Plat>();
+  public static OrderManager Singleton;
+  [SerializeField] private List<Plat> activeOrders = new();
 
-    public void CreateOrder(EMeal meal)
+#if UNITY_EDITOR
+  [field: SerializeField] public bool _debugFixedOrder;
+#endif
+
+  private void Awake()
+  {
+    if (Singleton == null) Singleton = this;
+    else Destroy(gameObject);
+  }
+
+  public void Start()
+  {
+    NetworkServer.OnGameStarted += delegate () 
     {
-        Plat newPlat = new Plat(meal);
-        activeOrders.Add(newPlat);
-        Debug.Log($"New order created: {meal}");
-    }
+      CreateRandomOrder();
+      Debug.Log("[----- OrderManager -----] GameHasStarted");
+    };
+  }
 
-    public Plat FindMatchingOrder(List<Ingredient> plateIngredients)
+  public override void OnDestroy()
+  {
+    base.OnDestroy();
+    Singleton = null;
+  }
+
+  public void CreateRandomOrder()
+  {
+    if (!IsHost) return;
+#if UNITY_EDITOR
+    Debug.Log("[----- OrderManager -----] CREATING A NEW ORDER");
+    if (_debugFixedOrder)
     {
-        foreach (var order in activeOrders)
-        {
-            // Créer un plat temporaire avec les ingrédients du plateau
-            Plat tempPlat = new Plat(order.mealType);
-            foreach (var ingredient in plateIngredients)
-            {
-                tempPlat.AddIngredient(ingredient);
-            }
-
-            // Vérifier si le plat est complet
-            if (tempPlat.IsCompleted())
-            {
-                return order;
-            }
-        }
-        return null;
+      EMeal _rand = EMeal.MeatMushrooms;
+      activeOrders.Add(new Plat(_rand));
+      OrderGenerator.Singleton.GenerateTicketRpc(_rand);
     }
+#endif
+    EMeal _randEMeal = (EMeal)UnityEngine.Random.Range(0, Enum.GetNames(typeof(EMeal)).Length);
+    activeOrders.Add(new Plat(_randEMeal));
+    OrderGenerator.Singleton.GenerateTicketRpc(_randEMeal);
+  }
 
-    public void CompleteOrder(Plat order)
+  public bool CheckOrder(EMeal _meal)
+  {
+#if UNITY_EDITOR
+    Debug.Log($"[---- OrderManager ---] Checking for order {_meal}");
+#endif
+    foreach (Plat order in activeOrders)
     {
-        if (activeOrders.Contains(order))
-        {
-            Debug.Log($"Order delivered: {order.mealType}");
-            activeOrders.Remove(order);
-        }
+      if (order.mealType == _meal)
+      {
+#if UNITY_EDITOR
+        Debug.Log($"[---- OrderManager ---] Following order is completed {_meal}");
+#endif
+        activeOrders.Remove(order);
+        return true;
+      }
     }
-
-    public List<Plat> GetActiveOrders()
-    {
-        return activeOrders;
-    }
+    return false;
+  }
 }

@@ -201,10 +201,11 @@ public class NetworkServer : NetworkBehaviour
   [Rpc(SendTo.ClientsAndHost)]
   public void OnGameStartedRpc()
   {
+    Debug.Log("<color=green>[----- NetworkManager -----] GAME HAS STARTED");
     OnGameStarted?.Invoke();
   }
 
-  public static void SpawnGameObjectInNetwork(GameObject _gameObject)
+  public void SpawnGameObjectInNetwork(GameObject _gameObject)
   {
     if (_gameObject.TryGetComponent(out NetworkObject networkObject))
     {
@@ -212,15 +213,17 @@ public class NetworkServer : NetworkBehaviour
     }
   }
 
-  public static void DespawnGameObjectInNetwork(GameObject _gameObject)
+  public void DespawnGameObjectInNetwork(GameObject _gameObject)
   {
+    if (!IsServer) return;
+
     if (_gameObject.TryGetComponent(out NetworkObject networkObject))
     {
       networkObject.Despawn(true);
     }
   }
 
-  public static void DeactivateGameObjectInNetwork(GameObject _gameObject)
+  public void DeactivateGameObjectInNetwork(GameObject _gameObject)
   {
     if (_gameObject.TryGetComponent(out NetworkObject networkObject))
       Singleton.DeactivateObjRpc(networkObject.NetworkObjectId);

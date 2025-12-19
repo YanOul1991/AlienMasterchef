@@ -6,6 +6,5 @@ public enum EBaseIngredient
   Lettuce,
   Tomato,
   Rice,
-  BugMeat,
-  Beef
+  BugMeat
 }

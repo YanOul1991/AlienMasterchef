@@ -123,7 +123,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6895509639006432546}
-  m_Layer: 0
+  - component: {fileID: 8651111871507804569}
+  m_Layer: 6
   m_Name: Collider_Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,6 +146,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 650641554252074943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8651111871507804569
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074229115897726985}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.055536933, y: 0.04, z: 0.17015743}
+  m_Center: {x: 0.002768468, y: -1.1586729e-17, z: -0.00858736}
 --- !u!1 &5796685615738712758
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +176,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3272480401659121138}
+  - component: {fileID: 4648578976924170978}
+  - component: {fileID: 8165677890831700168}
   m_Layer: 0
   m_Name: Collider_Chop
   m_TagString: Untagged
@@ -176,3 +200,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 650641554252074943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4648578976924170978
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796685615738712758}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.097087495, y: 0.04868481, z: 0.19791937}
+  m_Center: {x: 0.041670762, y: 0.0051930845, z: -0.17730403}
+--- !u!114 &8165677890831700168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796685615738712758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed98422b7d754d44b4ea7df53d93a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tool
+  eToolType: 0

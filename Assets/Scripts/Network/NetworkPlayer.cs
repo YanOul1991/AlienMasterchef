@@ -37,6 +37,7 @@ public class NetworkPlayer : NetworkBehaviour
       {
         m_leftHandGrabbedObject = hitColliders[0].gameObject;
         m_leftHandGrabbedObject.transform.parent = m_leftHand.transform;
+        // m_leftHandGrabbedObject.GetComponent<Collider>().isTrigger = true;
         Destroy(m_leftHandGrabbedObject.GetComponent<Rigidbody>());
       }
     }
@@ -47,6 +48,7 @@ public class NetworkPlayer : NetworkBehaviour
       {
         m_rightHandGrabbedObject = hitColliders[0].gameObject;
         m_rightHandGrabbedObject.transform.parent = m_rightHand.transform;
+        // m_rightHandGrabbedObject.GetComponent<Collider>().isTrigger = true;
         Destroy(m_rightHandGrabbedObject.GetComponent<Rigidbody>());
       }
     }
@@ -59,6 +61,7 @@ public class NetworkPlayer : NetworkBehaviour
       if (m_leftHandGrabbedObject != null)
       {
         m_leftHandGrabbedObject.AddComponent<Rigidbody>();
+        // m_leftHandGrabbedObject.GetComponent<Collider>().isTrigger = false;
         m_leftHandGrabbedObject.transform.parent = null;
         m_leftHandGrabbedObject = null;
       }
@@ -67,6 +70,7 @@ public class NetworkPlayer : NetworkBehaviour
       if (m_rightHandGrabbedObject != null)
       {
         m_rightHandGrabbedObject.AddComponent<Rigidbody>();
+        // m_rightHandGrabbedObject.GetComponent<Collider>().isTrigger = false;
         m_rightHandGrabbedObject.transform.parent = null;
         m_rightHandGrabbedObject = null;
       }
