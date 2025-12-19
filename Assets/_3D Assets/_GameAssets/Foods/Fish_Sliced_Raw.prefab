@@ -351,13 +351,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57304e6784b9e9346bf0119c92b7903c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Food
+  ShowTopMostFoldoutHeaderGroup: 1
   foodStates:
   - toolType: 3
     requiredState: 1
     resultingState: 3
   currentIngredient:
     baseIngredient: 0
-    state: 1
+    state: 0
     originalStateObject: {fileID: 0}
     choppedStateObject: {fileID: 3326037188460483040}
     cookedStateObject: {fileID: 0}
@@ -423,14 +424,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3183356867
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3372357553
+  InScenePlacedSourceGlobalObjectIdHash: 4236260906
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1

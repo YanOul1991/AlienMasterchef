@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2213951774037417181}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3623101839780316171}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Tail02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8155112605366528026}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4648910223789002181}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WingRight01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7083144022533533795}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 5186941343517996252}
   - component: {fileID: 848866272841857527}
   - component: {fileID: 2687690729024222421}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Mosquito
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,8 +455,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   <BaseMovementSpeed>k__BackingField: 1
   <PanicMovementSpeed>k__BackingField: 0
-  <FoodStateTransforms>k__BackingField: []
-  <ResultingFood>k__BackingField: {fileID: 0}
+  <ResultingFood>k__BackingField: {fileID: 4304696079374934974, guid: f3e9f16a0d0d05a4e9981a92fba535eb, type: 3}
 --- !u!1 &4970106079315470114
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8498274096282936873}
   - component: {fileID: 5100144481630508847}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Swarm09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,7 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2696230276072048397}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WingLeft03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3958373565292677876}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WingRight02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6744009158122924869}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WingLeft02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3316397049832626772}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Tail01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,7 +695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4705909455842536759}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -727,7 +726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4056264238706565182}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WingLeft01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9098887045946592793}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WingRight03
   m_TagString: Untagged
   m_Icon: {fileID: 0}

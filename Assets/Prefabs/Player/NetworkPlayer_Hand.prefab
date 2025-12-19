@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7527730322354283347}
   - component: {fileID: 6999163370172057202}
   m_Layer: 0
-  m_Name: __NETWORK_HAND__
+  m_Name: NetworkPlayer_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
