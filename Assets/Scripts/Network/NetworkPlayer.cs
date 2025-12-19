@@ -3,30 +3,49 @@ using UnityEngine;
 
 public class NetworkPlayer : NetworkBehaviour
 {
-  private GameObject m_root;
-  private GameObject m_leftHand;
-  private GameObject m_rightHand;
-
+  [SerializeField] private GameObject m_body;
+  [SerializeField] private GameObject m_leftHand;
+  [SerializeField] private GameObject m_rightHand;
+  [SerializeField] private GameObject m_head;
   [SerializeField] private LayerMask m_layerMask;
-
   private GameObject m_leftHandGrabbedObject;
   private GameObject m_rightHandGrabbedObject;
 
-  public void Initialize(GameObject root, GameObject leftHand, GameObject rightHand)
+  private Vector3 m_bodyOffset;
+  private Vector3 m_headOffset;
+
+  [Rpc(SendTo.Everyone)]
+  public void InitializeNetworkPlayerRpc()
   {
-    m_root      = root;
-    m_leftHand  = leftHand;
-    m_rightHand = rightHand;
+    m_bodyOffset = m_body.transform.localPosition * 0.5f;
+    m_headOffset = m_head.transform.localPosition * 0.5f;
   }
 
-  public void RootUpdate(Vector3 position, Quaternion rotation) 
-    => m_root.transform.SetPositionAndRotation(position, rotation);
+  [Rpc(SendTo.Everyone)]
+  public void UpdateNetworkPlayerDataRpc(NetworkPlayerDataUpdate data)
+  {
+    m_body.transform.position = data.rootPosition + m_bodyOffset;
+    m_body.transform.rotation = Quaternion.identity;
 
-  public void LeftHandUpdate(Vector3 position, Quaternion rotation) 
-    => m_leftHand.transform.SetPositionAndRotation(position, rotation);
+    m_head.transform.position = data.rootPosition + m_headOffset;
+    m_head.transform.rotation = data.rootRotation;
 
-  public void RightHandUpdate(Vector3 position, Quaternion rotation) 
-    => m_rightHand.transform.SetPositionAndRotation(position, rotation);
+    m_leftHand.transform.position = data.leftHandPosition;
+    m_leftHand.transform.rotation = data.leftHandRotation;
+
+    m_rightHand.transform.position = data.rightHandPosition;
+    m_rightHand.transform.position = data.rightHandPosition;
+
+  }
+
+  // public void RootUpdate(Vector3 position, Quaternion rotation) 
+  //   => m_root.transform.SetPositionAndRotation(position, rotation);
+
+  // public void LeftHandUpdate(Vector3 position, Quaternion rotation) 
+  //   => m_leftHand.transform.SetPositionAndRotation(position, rotation);
+
+  // public void RightHandUpdate(Vector3 position, Quaternion rotation) 
+  //   => m_rightHand.transform.SetPositionAndRotation(position, rotation);
 
   public void OnGrabAction(int hand)
   {

@@ -79,17 +79,17 @@ public class NetworkServer : NetworkBehaviour
 
     if (IsServer)
     {
-      m_connectedPlayers[id] = new GameObject[3];
+      m_connectedPlayers[id] = new GameObject[1];
 
       GameObject _go_instance = Instantiate(m_playerPrefab);
-      GameObject _leftHand = Instantiate(m_playerHandPrefab);
-      GameObject _rightHand = Instantiate(m_playerHandPrefab);
+      // GameObject _leftHand = Instantiate(m_playerHandPrefab);
+      // GameObject _rightHand = Instantiate(m_playerHandPrefab);
 
       m_connectedPlayers[id][0] = _go_instance;
-      m_connectedPlayers[id][1] = _leftHand;
-      m_connectedPlayers[id][2] = _rightHand;
+      // m_connectedPlayers[id][1] = _leftHand;
+      // m_connectedPlayers[id][2] = _rightHand;
 
-      _go_instance.GetComponent<NetworkPlayer>().Initialize(_go_instance, _leftHand, _rightHand);
+      // _go_instance.GetComponent<NetworkPlayer>().InitializeNetworkPlayerRpc();
     }
 
     if (networkManager.ConnectedClients.Count >= 2)
@@ -116,7 +116,10 @@ public class NetworkServer : NetworkBehaviour
     foreach (var pair in m_connectedPlayers)
     {
       foreach (var obj in pair.Value)
+      {
         obj.GetComponent<NetworkObject>().Spawn();
+        obj.GetComponent<NetworkPlayer>().InitializeNetworkPlayerRpc();
+      }
     }
 
     for (int i = 0; i < 5; i++)
@@ -169,10 +172,12 @@ public class NetworkServer : NetworkBehaviour
   {
     ulong senderID = serverParams.Receive.SenderClientId;
     NetworkPlayer _target = m_connectedPlayers[senderID][0].GetComponent<NetworkPlayer>();
-    
-    _target.RootUpdate(data.rootPosition, data.rootRotation);
-    _target.LeftHandUpdate(data.leftHandPosition, data.leftHandRotation);
-    _target.RightHandUpdate(data.rightHandPosition, data.rightHandRotation);
+
+    _target.UpdateNetworkPlayerDataRpc(data);
+
+    // _target.RootUpdate(data.rootPosition, Quaternion.identity);
+    // _target.LeftHandUpdate(data.leftHandPosition, data.leftHandRotation);
+    // _target.RightHandUpdate(data.rightHandPosition, data.rightHandRotation);
   }
 
   /*
