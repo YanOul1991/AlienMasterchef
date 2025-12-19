@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1804748388160678077, guid: 89caf35d1bd915447a33080fcade4c0b, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3772474763658566107, guid: 89caf35d1bd915447a33080fcade4c0b, type: 3}
       propertyPath: m_Name
