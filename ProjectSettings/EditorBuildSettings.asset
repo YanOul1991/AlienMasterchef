@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/_DEV_Yanis.unity
     guid: d027b193d141b164e8b25ee9b8bf56d2
+  - enabled: 1
+    path: Assets/Scenes/Sebastien.unity
+    guid: ec342077a273f5f4bb366215b73c60b3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7e3f614689d2c0247b626c924ec2f62e, type: 2}
