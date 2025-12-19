@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1804748388160678077, guid: 89caf35d1bd915447a33080fcade4c0b, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1893734934727447129, guid: 89caf35d1bd915447a33080fcade4c0b, type: 3}
       propertyPath: m_Sprite
@@ -39,7 +39,7 @@ PrefabInstance:
     - target: {fileID: 2867298393443266997, guid: 89caf35d1bd915447a33080fcade4c0b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 11491f667dd3d6142a95f0ea3ff72806, type: 3}
+      objectReference: {fileID: 21300000, guid: 7ee163ebd5b57e3469169d8496e7583b, type: 3}
     - target: {fileID: 2867298393443266997, guid: 89caf35d1bd915447a33080fcade4c0b, type: 3}
       propertyPath: m_Color.b
       value: 1
