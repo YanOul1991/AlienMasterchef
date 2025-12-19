@@ -77,7 +77,14 @@ public class Food : NetworkBehaviour
   void FixedUpdate()
   {
     if (transform.position.y < -15)
-   transform.position = m_validPosition;
+    {
+      if(TryGetComponent(out Rigidbody rb))
+      {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        transform.position = m_validPosition;
+      }
+    }
   }
 
   [Rpc(SendTo.ClientsAndHost)]
