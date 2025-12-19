@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3892416766702943002}
   - component: {fileID: 4239302686929667345}
   - component: {fileID: 3384922454634906983}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fish_Slice_1_Raw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 8881029095886735309}
   - component: {fileID: 7996586136755479213}
   - component: {fileID: 4909507323215656704}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fish_Slice_3_Fried
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 2442709948004324581}
   - component: {fileID: 5330815761000144610}
   - component: {fileID: 5007910127409460364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fish_Slice_1_Fried
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 6691211184337748786}
   - component: {fileID: 1037604754439143068}
   - component: {fileID: 6226668712349991128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fish_Slice_2_Fried
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 3816246525405185694}
   - component: {fileID: 4859435638563935535}
   - component: {fileID: 87604177773240711}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fish_Slice_3_Raw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 2005158577234543160}
   - component: {fileID: 2189481154878180136}
   - component: {fileID: 8764952054577553016}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fish_Sliced_Raw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1374417119
+  GlobalObjectIdHash: 188504740
   InScenePlacedSourceGlobalObjectIdHash: 188504740
   DeferredDespawnTick: 0
   Ownership: 1
@@ -636,7 +636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8240722857813664790}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'Fried Fish '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1444100358669176761}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Raw Fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 3896493073069805330}
   - component: {fileID: 6389150555865303051}
   - component: {fileID: 8977012094448869487}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fish_Slice_2_Raw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
