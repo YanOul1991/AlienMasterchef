@@ -65,10 +65,10 @@ public class CreatureFish : Creature<CreatureFish>
   {
     if (!IsServer) return;
 
-    NetworkServer.DeactivateGameObjectInNetwork(gameObject);
+    NetworkServer.Singleton.DeactivateGameObjectInNetwork(gameObject);
     GameObject _food = Instantiate(ResultingFood, transform.position, transform.rotation);
-    NetworkServer.SpawnGameObjectInNetwork(_food);
-    NetworkServer.DespawnGameObjectInNetwork(gameObject);
+    NetworkServer.Singleton.SpawnGameObjectInNetwork(_food);
+    NetworkServer.Singleton.DespawnGameObjectInNetwork(gameObject);
   }
 
   protected override void Move()

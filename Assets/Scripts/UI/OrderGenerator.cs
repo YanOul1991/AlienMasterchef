@@ -1,160 +1,75 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class OrderGenerator : MonoBehaviour
+public class OrderGenerator : NetworkBehaviour
 {
-    //OrderManager -----------------
-    public OrderManager orderManager;
+  public static OrderGenerator Singleton { get; set; }
 
-    //Prefab -----------------
-    public Canvas FishAndChipsTicket;
-    public Canvas SushiTicket;
-    public Canvas OnigiriTicket;
-    public Canvas BugNuggetsTicket;
-    public Canvas MeatMushroomsTicket;
-    public Canvas TacoTicket;
+  //Prefab -----------------
+  public Canvas FishAndChipsTicket;
+  public Canvas SushiTicket;
+  public Canvas OnigiriTicket;
+  public Canvas BugNuggetsTicket;
+  public Canvas MeatMushroomsTicket;
+  public Canvas TacoTicket;
 
-    //Listes -----------------
-    public List<OrderTicket> listTickets = new List<OrderTicket>();
-    List<Plat> listActiveOrders;
+  private Dictionary<EMeal, Canvas> m_ticketsCanvas;
 
-    //V�rification de status d'envoi -----------------
-    bool orderSent;
+  //Listes -----------------
+  public List<OrderTicket> listTickets = new();
+  // List<Plat> listActiveOrders;
 
-    //Effets sonores pour les commandes -----------------
-    AudioSource audiosource;
-    public AudioClip audio_ReceivedOrder;
-    public AudioClip audio_CompletedOrder;
+  //V�rification de status d'envoi -----------------
+  // bool orderSent;
 
-    void Start()
+  //Effets sonores pour les commandes -----------------
+  AudioSource m_audiosource;
+  public AudioClip audio_ReceivedOrder;
+  public AudioClip audio_CompletedOrder;
+
+  private void Awake()
+  {
+    if (Singleton == null) Singleton = this;
+    else Destroy(gameObject);
+
+    if (TryGetComponent(out AudioSource audioSourceComponent)) m_audiosource = audioSourceComponent;
+    else m_audiosource = gameObject.AddComponent<AudioSource>();
+
+    // orderSent = false;
+
+    m_ticketsCanvas = new Dictionary<EMeal, Canvas>()
     {
-        orderSent = false;
-        audiosource = GetComponent<AudioSource>();
-    }
+      { EMeal.FishAndChips, FishAndChipsTicket},
+      { EMeal.Sushi, SushiTicket},
+      { EMeal.Onigiri, OnigiriTicket},
+      { EMeal.BugNuggets, BugNuggetsTicket},
+      { EMeal.MeatMushrooms, MeatMushroomsTicket},
+      { EMeal.Taco, TacoTicket }
+    };
 
-    void Update()
-    {
-        //G�n�rer des commandes aux 30 secondes, pour un maximum de 3 commandes � la fois
-        listActiveOrders = orderManager.GetActiveOrders();
-        int nbCommandes = listActiveOrders.Count;
+    foreach (Canvas canvas in m_ticketsCanvas.Values)
+      canvas.gameObject.SetActive(false);
+  }
 
-        //S'il y a moins de 3 commandes, on d�marre la coroutine pour 
-        if (nbCommandes < 3 && !orderSent)
-        {
-            orderSent = true;
-            StartCoroutine(GenererCommande());
-        }
+  [Rpc(SendTo.ClientsAndHost)]
+  public void GenerateTicketRpc(EMeal _mealType)
+  {
+    Debug.Log($"[----- OrderGenerator -----] NEW ORDER TICKET ADDED of type {_mealType}");
+    m_ticketsCanvas[_mealType].gameObject.SetActive(true);
+    m_audiosource.PlayOneShot(audio_ReceivedOrder);
+  }
 
-        Debug.Log("<color=blue>" + nbCommandes + "</color>");
-    }
-
-    //Transformer les types de EMeal en tableau
-    static T GetRandomEnum<T>()
-    {
-        System.Array A = System.Enum.GetValues(typeof(T));
-        T V = (T)A.GetValue(Random.Range(0, A.Length));
-        return V;
-    }
-
-    // Coroutine pour la cr�ation de commandes aux 30 secondes
-    private IEnumerator GenererCommande()
-    {
-        //Cr�ation de la commande al�atoirement
-        EMeal commandeAleatoire = GetRandomEnum<EMeal>();
-        // orderManager.CreateOrder(commandeAleatoire);
-
-        //Affichage de la commande au comptoir (UI)
-        bool commandePasse = false;
-
-        for (int i = 0; i < listTickets.Count && i < listActiveOrders.Count; i++)
-        {
-            OrderTicket t = listTickets[i];
-
-            if (t.ticket == null && !commandePasse)
-            {
-                foreach (Ingredient ingredient in (RecipeDatabase.GetRecipe(commandeAleatoire).requiredIngredients))
-                {
-                    //Liste des ingr�dients requis
-                    print(ingredient.state);
-                    print(ingredient.baseIngredient);
-                }
-
-                t.plat = listActiveOrders[i];
-
-                Canvas commandeGenere = null;
-
-                switch (t.plat.mealType)
-                {
-                    case EMeal.FishAndChips:
-                        commandeGenere = Instantiate(FishAndChipsTicket, t.transform.position, t.transform.rotation);
-                        break;
-
-                    case EMeal.Sushi:
-                        commandeGenere = Instantiate(SushiTicket, t.transform.position, t.transform.rotation);
-                        break;
-
-                    case EMeal.Onigiri:
-                        commandeGenere = Instantiate(OnigiriTicket, t.transform.position, t.transform.rotation);
-                        break;
-
-                    case EMeal.BugNuggets:
-                        commandeGenere = Instantiate(BugNuggetsTicket, t.transform.position, t.transform.rotation);
-                        break;
-
-                    case EMeal.MeatMushrooms:
-                        commandeGenere = Instantiate(MeatMushroomsTicket, t.transform.position, t.transform.rotation);
-                        break;
-
-                    case EMeal.Taco:
-                        commandeGenere = Instantiate(TacoTicket, t.transform.position, t.transform.rotation);
-                        break;
-
-                    default:
-                        Debug.LogError("Meal type non g�r� : " + t.plat.mealType);
-                        break;
-                }
-
-                // Assignation finale
-                if (commandeGenere != null)
-                {
-                    t.ticket = commandeGenere;
-                    commandeGenere.gameObject.SetActive(true);
-                }
-
-                commandePasse = true;
-            }
-
-            Debug.Log($"Item at index {i}: {t.plat}");
-        }
-
-        //GESTION DU SON
-        audiosource.PlayOneShot(audio_ReceivedOrder);
-
-
-        //Puis on attend 30 secondes
-        yield return new WaitForSeconds(30f);
-        orderSent = false;
-    }
-
-    //�a fonctionne, juste d�finir la m�thode de v�rification
-    void CompletionCommande(Plat order)
-    {
-        orderManager.CompleteOrder(order);
-
-        //GESTION DU SON
-        audiosource.PlayOneShot(audio_CompletedOrder);
-
-        foreach (OrderTicket t in listTickets)
-        {
-            if (t.plat.IsCompleted())
-            {
-                Destroy(t.ticket.gameObject);
-                t.ticket = null;
-                t.plat = null;
-            }
-        }
-    }
+  [Rpc(SendTo.ClientsAndHost)]
+  public void RemoveTicketRpc(EMeal _mealType)
+  {
+#if UNITY_EDITOR
+    Debug.Log($"[---- OrderGenerator ----] An order has been completed removing ticket!");
+#endif
+    m_ticketsCanvas[_mealType].gameObject.SetActive(false);
+    m_audiosource.PlayOneShot(audio_CompletedOrder);
+  }
 }
