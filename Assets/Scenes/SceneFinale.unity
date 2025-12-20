@@ -6064,6 +6064,17 @@ Transform:
   - {fileID: 829383765}
   m_Father: {fileID: 1578001470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &285459352 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9001022146305500090, guid: 649f277b77f6b0d4e92a758d7b515058, type: 3}
+  m_PrefabInstance: {fileID: 417935504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!4 &289870860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1812108706703087535, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
@@ -26505,7 +26516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2221823589436796880, guid: 19ea1db04120b40459073a1ff646abe8, type: 3}
       propertyPath: _exclusiveMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6951186309545617209, guid: 19ea1db04120b40459073a1ff646abe8, type: 3}
       propertyPath: m_Name
@@ -38306,7 +38317,7 @@ PrefabInstance:
     - target: {fileID: 1821503071222852279, guid: af2f614469c79e041a53e3bd6742ecb7, type: 3}
       propertyPath: _MatchmakingStartButton
       value: 
-      objectReference: {fileID: 1867297496}
+      objectReference: {fileID: 285459352}
     - target: {fileID: 4736033878498938995, guid: af2f614469c79e041a53e3bd6742ecb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.73183
