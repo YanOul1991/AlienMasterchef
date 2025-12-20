@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/_DEV_Yanis.unity
     guid: d027b193d141b164e8b25ee9b8bf56d2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sebastien.unity
     guid: ec342077a273f5f4bb366215b73c60b3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Malaika.unity
     guid: 7097545d8cfb55041b751839ed084e01
   - enabled: 1
