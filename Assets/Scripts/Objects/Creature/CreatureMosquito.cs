@@ -28,6 +28,7 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
   [field: SerializeField] public override float PanicMovementSpeed { get; protected set; }
   [field: SerializeField] public override GameObject ResultingFood { get; protected set; }
   public static void SetFlyZoneData(CreatureMosquitoFlyZone zone) => flyZoneData = zone;
+  [field: SerializeField] private AudioClip m_deathSound;
 
 
   /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -87,6 +88,8 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
     if (!IsServer) return;
 
     PlayDeathSoundRpc();
+
+    PlayDeathSoundRpc();
     NetworkServer.Singleton.DeactivateGameObjectInNetwork(gameObject);
     GameObject _food = Instantiate(ResultingFood, transform.position, transform.rotation);
     NetworkServer.Singleton.SpawnGameObjectInNetwork(_food);
@@ -106,9 +109,14 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
   [Rpc(SendTo.ClientsAndHost)]
   private void PlayDeathSoundRpc()
   {
-    if (deathSound != null)
+    if (TryGetComponent(out AudioSource audioSource))
     {
-      GetComponent<AudioSource>().PlayOneShot(deathSound);
+      audioSource.PlayOneShot(m_deathSound);
+    }
+    else
+    {
+      audioSource = gameObject.AddComponent<AudioSource>();
+      audioSource.PlayOneShot(m_deathSound);
     }
   }
 }
