@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
@@ -8,53 +9,67 @@ using UnityEngine;
 )]
 public class Food : NetworkBehaviour
 {
- [SerializeField] private FoodStateTransform[] foodStates;
- [SerializeField] private Ingredient currentIngredient;
- 
- private Vector3 m_validPosition;
+  [SerializeField] private FoodStateTransform[] foodStates;
+  [SerializeField] private Ingredient currentIngredient;
+
+  [SerializeField] private AudioClip m_audioKnife;
+  [SerializeField] private AudioClip m_audioBlender;
+  [SerializeField] private AudioClip m_audioStove;
+  [SerializeField] private AudioClip m_audioFrier;
+
+  private Dictionary<EToolType, AudioClip> m_clips;
+
+  private Vector3 m_validPosition;
 
   private void Awake()
   {
-  if (TryGetComponent(out Rigidbody rb))
-   rb.isKinematic = true;
+    if (TryGetComponent(out Rigidbody rb))
+      rb.isKinematic = true;
 
-  NetworkServer.OnGameStarted += () =>
-  {
-   if (TryGetComponent(out Rigidbody rigidbody))
-   {
-    if (!IsServer) Destroy(rigidbody);
-    else rigidbody.isKinematic = false;
-   }
+    m_clips = new Dictionary<EToolType, AudioClip>()
+    { { EToolType.Knife, m_audioKnife },
+      { EToolType.Blender, m_audioBlender },
+      { EToolType.Stove, m_audioStove },
+      { EToolType.Frier, m_audioFrier }
+    };
 
-   m_validPosition = transform.position;
-  };
+    NetworkServer.OnGameStarted += () =>
+    {
+      if (TryGetComponent(out Rigidbody rigidbody))
+      {
+        if (!IsServer) Destroy(rigidbody);
+        else rigidbody.isKinematic = false;
+      }
+
+      m_validPosition = transform.position;
+    };
   }
 
   private void Start()
- {
-  currentIngredient ??= new Ingredient(EBaseIngredient.Fish, EIngredientState.Original);
- }
+  {
+    currentIngredient ??= new Ingredient(EBaseIngredient.Fish, EIngredientState.Original);
+  }
 
   public override void OnNetworkSpawn()
   {
     base.OnNetworkSpawn();
-  if (TryGetComponent(out Rigidbody rigidbody))
+    if (TryGetComponent(out Rigidbody rigidbody))
+    {
+      if (!IsServer) Destroy(rigidbody);
+      else rigidbody.isKinematic = false;
+    }
+    m_validPosition = transform.position;
+  }
+
+  public Ingredient GetIngredient()
   {
-   if (!IsServer) Destroy(rigidbody);
-   else rigidbody.isKinematic = false;
-  }
-  m_validPosition = transform.position;
+    return currentIngredient;
   }
 
- public Ingredient GetIngredient()
- {
-  return currentIngredient;
- }
-
- public void SetIngredient(Ingredient ingredient)
- {
-  currentIngredient = ingredient;
- }
+  public void SetIngredient(Ingredient ingredient)
+  {
+    currentIngredient = ingredient;
+  }
 
   void OnTriggerEnter(Collider other)
   {
@@ -78,7 +93,7 @@ public class Food : NetworkBehaviour
   {
     if (transform.position.y < -15)
     {
-      if(TryGetComponent(out Rigidbody rb))
+      if (TryGetComponent(out Rigidbody rb))
       {
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -86,29 +101,44 @@ public class Food : NetworkBehaviour
       }
     }
   }
-
+  
   [Rpc(SendTo.ClientsAndHost)]
   private void TransformFoodRpc(EToolType toolType)
- {
-  m_validPosition = transform.position;
-  foreach (var transform in foodStates)
   {
-   if (transform.toolType == toolType &&
-     transform.requiredState == currentIngredient.state)
-   {
-    currentIngredient.SetState(transform.resultingState);
-    Debug.Log($"Transformed to: {currentIngredient}");
-    return;
-   }
+    m_validPosition = transform.position;
+    foreach (var transform in foodStates)
+    {
+      if (transform.toolType == toolType &&
+        transform.requiredState == currentIngredient.state)
+      {
+        PlayToolSoundRpc(toolType);
+        Debug.Log($"Transformed to: {currentIngredient}");
+        currentIngredient.SetState(transform.resultingState);
+        return;
+      }
+    }
+    Debug.Log($"No valid transformation for {toolType} on {currentIngredient}");
   }
-  Debug.Log($"No valid transformation for {toolType} on {currentIngredient}");
- }
 
- [System.Serializable]
- private class FoodStateTransform
- {
-  public EToolType toolType;
-  public EIngredientState requiredState;
-  public EIngredientState resultingState;
- }
+  [Rpc(SendTo.ClientsAndHost)]
+  private void PlayToolSoundRpc(EToolType toolType)
+  {
+    if (TryGetComponent(out AudioSource audioSource))
+    {
+      audioSource.PlayOneShot(m_clips[toolType]);
+    }
+    else
+    {
+      audioSource = gameObject.AddComponent<AudioSource>();
+      audioSource.PlayOneShot(m_clips[toolType]);
+    }
+  }
+
+  [System.Serializable]
+  private class FoodStateTransform
+  {
+    public EToolType toolType;
+    public EIngredientState requiredState;
+    public EIngredientState resultingState;
+  }
 }

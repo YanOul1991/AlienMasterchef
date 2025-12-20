@@ -21,6 +21,7 @@ public class CreatureFish : Creature<CreatureFish>
   [field: SerializeField] public override float BaseMovementSpeed { get; protected set; }
   [field: SerializeField] public override float PanicMovementSpeed { get; protected set; }
   [field: SerializeField] public override GameObject ResultingFood { get; protected set; }
+  [field: SerializeField] private AudioClip m_deathSound;
 
   /* *******************
      * Components
@@ -65,10 +66,26 @@ public class CreatureFish : Creature<CreatureFish>
   {
     if (!IsServer) return;
 
+    PlayDeathSoundRpc();
+
     NetworkServer.Singleton.DeactivateGameObjectInNetwork(gameObject);
     GameObject _food = Instantiate(ResultingFood, transform.position, transform.rotation);
     NetworkServer.Singleton.SpawnGameObjectInNetwork(_food);
     NetworkServer.Singleton.DespawnGameObjectInNetwork(gameObject);
+  }
+
+  [Rpc(SendTo.ClientsAndHost)]
+  private void PlayDeathSoundRpc()
+  {
+    if (TryGetComponent(out AudioSource audioSource))
+    {
+      audioSource.PlayOneShot(m_deathSound);
+    }
+    else
+    {
+      audioSource = gameObject.AddComponent<AudioSource>();
+      audioSource.PlayOneShot(m_deathSound);
+    }
   }
 
   protected override void Move()
@@ -85,11 +102,8 @@ public class CreatureFish : Creature<CreatureFish>
   {
     while (Vector3.Distance(m_navAgent.destination, transform.position) > 0.1f)
       yield return null;
-
     yield return new WaitForSeconds(Random.Range(0, 2.0f));
-
     Move();
-
     yield break;
   }
 }
