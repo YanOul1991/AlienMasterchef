@@ -79,10 +79,29 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
       --- Overrides
   ---------------------------------- */
 
-  void OnTriggerEnter(Collider other)
+  private void OnTriggerEnter(Collider other)
   {
-    if (other.gameObject.name == "Knife") Death();
+    if (other.gameObject.TryGetComponent(out Tool tool))
+    {
+      if (tool.eToolType == EToolType.Knife)
+      {
+        Death();
+      }
+    }
   }
+
+
+  private void OnCollisionEnter(Collision collision)
+  {
+    if (collision.gameObject.TryGetComponent(out Tool tool))
+    {
+      if (tool.eToolType == EToolType.Knife)
+      {
+        Death();
+      }
+    }
+  }
+
   protected override void Death()
   {
     if (!IsServer) return;

@@ -44,7 +44,24 @@ public class CreatureFish : Creature<CreatureFish>
 
   private void OnTriggerEnter(Collider other)
   {
-    if (other.gameObject.name == "Knife") Death();
+    if (other.gameObject.TryGetComponent(out Tool tool))
+    {
+      if (tool.eToolType == EToolType.Knife)
+      {
+        Death();
+      }
+    }
+  }
+
+  private void OnCollisionEnter(Collision collision)
+  {
+    if (collision.gameObject.TryGetComponent(out Tool tool))
+    {
+      if (tool.eToolType == EToolType.Knife)
+      {
+        Death();
+      }
+    }
   }
 
   private Vector3 GetRandomPoint()
