@@ -7774,17 +7774,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649f277b77f6b0d4e92a758d7b515058, type: 3}
---- !u!114 &417935505 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9001022146305500090, guid: 649f277b77f6b0d4e92a758d7b515058, type: 3}
-  m_PrefabInstance: {fileID: 417935504}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &417969667
 GameObject:
   m_ObjectHideFlags: 0
@@ -26381,6 +26370,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2221823589436796880, guid: 19ea1db04120b40459073a1ff646abe8, type: 3}
+      propertyPath: _exclusiveMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6951186309545617209, guid: 19ea1db04120b40459073a1ff646abe8, type: 3}
       propertyPath: m_Name
       value: EventSystem
@@ -38053,7 +38046,7 @@ PrefabInstance:
     - target: {fileID: 1821503071222852279, guid: af2f614469c79e041a53e3bd6742ecb7, type: 3}
       propertyPath: _MatchmakingStartButton
       value: 
-      objectReference: {fileID: 417935505}
+      objectReference: {fileID: 1867297496}
     - target: {fileID: 4736033878498938995, guid: af2f614469c79e041a53e3bd6742ecb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.73183
