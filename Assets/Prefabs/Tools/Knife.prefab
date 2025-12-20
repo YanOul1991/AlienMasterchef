@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6291676347963936714}
   - component: {fileID: 7470125104704649811}
   - component: {fileID: 2203526048476709635}
-  - component: {fileID: 1363116484414395476}
+  - component: {fileID: 2747967954216655497}
   - component: {fileID: 7444181122707939910}
   - component: {fileID: 6018436988839848959}
   - component: {fileID: 454079891523350148}
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.024, y: 0.397, z: 0.168}
-  m_LocalScale: {x: 0.025, y: 0.05, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564173217297554807}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 434273585134630880, guid: b4d737c1ea4838b4f8306973058ef02c, type: 3}
 --- !u!23 &2203526048476709635
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9cc071acb09ef5e4aaa230a5bdf37ca0, type: 2}
+  - {fileID: 2100000, guid: 9866fda0e61a7904087eb0ec5ab17e03, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1363116484414395476
+--- !u!65 &2747967954216655497
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,8 +113,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.045078002, y: 0.011652656, z: 0.42814893}
+  m_Center: {x: 0.0065986104, y: 0.0053368956, z: -0.1376389}
 --- !u!114 &7444181122707939910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1063618292
+  GlobalObjectIdHash: 887836089
   InScenePlacedSourceGlobalObjectIdHash: 2439739479
   DeferredDespawnTick: 0
   Ownership: 1
