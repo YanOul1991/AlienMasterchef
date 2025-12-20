@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 363660348
+  GlobalObjectIdHash: 434064657
   InScenePlacedSourceGlobalObjectIdHash: 434064657
   DeferredDespawnTick: 0
   Ownership: 1
@@ -199,6 +199,10 @@ MonoBehaviour:
     cookedStateObject: {fileID: 1258565943837518183}
     friedStateObject: {fileID: 2879467845750619559}
     blendedStateObject: {fileID: 3263777139847949794}
+  m_audioKnife: {fileID: 8300000, guid: 65dfdbd3bdc5dc04d9ece27f55ac7234, type: 3}
+  m_audioBlender: {fileID: 8300000, guid: bdd838689b795a74db5f3889cecfaaa6, type: 3}
+  m_audioStove: {fileID: 8300000, guid: 2f844f1a68d896142b1f8ab2a6ce8624, type: 3}
+  m_audioFrier: {fileID: 8300000, guid: a99e5c4ba43a07744b9492dbb5846688, type: 3}
 --- !u!54 &1971677191296185583
 Rigidbody:
   m_ObjectHideFlags: 0

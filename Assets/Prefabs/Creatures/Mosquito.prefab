@@ -456,6 +456,7 @@ MonoBehaviour:
   <BaseMovementSpeed>k__BackingField: 1
   <PanicMovementSpeed>k__BackingField: 0
   <ResultingFood>k__BackingField: {fileID: 4304696079374934974, guid: f3e9f16a0d0d05a4e9981a92fba535eb, type: 3}
+  m_deathSound: {fileID: 8300000, guid: 66c3e7d8099dc0a40b2a4a965843103f, type: 3}
 --- !u!1 &4970106079315470114
 GameObject:
   m_ObjectHideFlags: 0
