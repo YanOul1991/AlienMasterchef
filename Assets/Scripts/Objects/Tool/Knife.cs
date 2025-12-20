@@ -54,6 +54,15 @@ public class Knife : NetworkBehaviour
       PlayDeathSoundRpc();
   }
 
+  void OnTriggerEnter(Collider collision)
+  {
+    if (collision.gameObject.TryGetComponent(out CreatureFish creatureFish))
+      PlayDeathSoundRpc();
+      
+    if (collision.gameObject.TryGetComponent(out CreatureMosquito creatureMosquito))
+      PlayDeathSoundRpc();
+  }
+
   [Rpc(SendTo.Everyone)]
   private void PlayDeathSoundRpc()
   {
