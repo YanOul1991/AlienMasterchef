@@ -7,7 +7,8 @@ public class MetaController : MonoBehaviour
   [SerializeField] private Transform m_leftController;
   [SerializeField] private Transform m_rightController;
   [SerializeField] private Transform m_playerRoot;
-  
+  [SerializeField] private Transform m_eyeAnchor;
+
   [Header("GameObjects")]
   [SerializeField] private GameObject m_leftHandObject;
   [SerializeField] private GameObject _rightHandObject;
@@ -34,7 +35,7 @@ public class MetaController : MonoBehaviour
       new NetworkPlayerDataUpdate 
       {
         rootPosition        = m_playerRoot.position,
-        rootRotation        = m_playerRoot.rotation,
+        rootRotation        = m_eyeAnchor.rotation,
         leftHandPosition    = m_leftController.position,
         leftHandRotation    = m_leftController.rotation,
         rightHandPosition   = m_rightController.position,

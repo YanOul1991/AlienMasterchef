@@ -116,7 +116,17 @@ public class NetworkServer : NetworkBehaviour
     foreach (var pair in m_connectedPlayers)
     {
       foreach (var obj in pair.Value)
+      {
         obj.GetComponent<NetworkObject>().Spawn();
+      }
+
+      if (pair.Value[0].TryGetComponent(out NetworkPlayer networkPlayer))
+      {
+        networkPlayer.NetworkPlayerHideSelfClientRpc(pair.Value[0], new ClientRpcParams
+        {
+          Send = new ClientRpcSendParams { TargetClientIds = new ulong[] { pair.Key }}
+        });
+      }
     }
 
     for (int i = 0; i < 5; i++)
@@ -169,7 +179,7 @@ public class NetworkServer : NetworkBehaviour
   {
     ulong senderID = serverParams.Receive.SenderClientId;
     NetworkPlayer _target = m_connectedPlayers[senderID][0].GetComponent<NetworkPlayer>();
-    
+
     _target.RootUpdate(data.rootPosition, data.rootRotation);
     _target.LeftHandUpdate(data.leftHandPosition, data.leftHandRotation);
     _target.RightHandUpdate(data.rightHandPosition, data.rightHandRotation);

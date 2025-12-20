@@ -12,6 +12,18 @@ public class NetworkPlayer : NetworkBehaviour
   private GameObject m_leftHandGrabbedObject;
   private GameObject m_rightHandGrabbedObject;
 
+  [ClientRpc]
+  public void NetworkPlayerHideSelfClientRpc(NetworkObjectReference reference, ClientRpcParams clientRpcParams = default)
+  {
+    Debug.Log("[---- NetworkPlayer ----] Hiding self");
+    if (reference.TryGet(out NetworkObject networkObject))
+    {
+      MeshRenderer[] renderers = networkObject.gameObject.GetComponentsInChildren<MeshRenderer>();
+      foreach (var r in renderers)
+        r.enabled = false;
+    }
+  }
+
   public void Initialize(GameObject root, GameObject leftHand, GameObject rightHand)
   {
     m_root      = root;
