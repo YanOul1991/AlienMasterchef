@@ -17365,6 +17365,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.698
       objectReference: {fileID: 0}
+    - target: {fileID: 4402162619129856792, guid: ed5074b632dda82498fd3c03a4fa92b5, type: 3}
+      propertyPath: m_spawningObject
+      value: 
+      objectReference: {fileID: 4574802101625912920, guid: b0997536a568c4d40a6e32b14b66201a, type: 3}
     - target: {fileID: 5083269409483005537, guid: ed5074b632dda82498fd3c03a4fa92b5, type: 3}
       propertyPath: m_Name
       value: ItemSpawner
@@ -21062,6 +21066,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.698
       objectReference: {fileID: 0}
+    - target: {fileID: 4402162619129856792, guid: ed5074b632dda82498fd3c03a4fa92b5, type: 3}
+      propertyPath: m_spawningObject
+      value: 
+      objectReference: {fileID: 5736794461152394723, guid: c9ae085911a637e4da3d7c4816ef947b, type: 3}
     - target: {fileID: 5083269409483005537, guid: ed5074b632dda82498fd3c03a4fa92b5, type: 3}
       propertyPath: m_Name
       value: ItemSpawner_3
@@ -30710,6 +30718,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.698
       objectReference: {fileID: 0}
+    - target: {fileID: 4402162619129856792, guid: ed5074b632dda82498fd3c03a4fa92b5, type: 3}
+      propertyPath: m_spawningObject
+      value: 
+      objectReference: {fileID: 3947826547400073103, guid: 7acc74fa27d74eb40b493a4c938a15cf, type: 3}
     - target: {fileID: 5083269409483005537, guid: ed5074b632dda82498fd3c03a4fa92b5, type: 3}
       propertyPath: m_Name
       value: ItemSpawner_4
@@ -34479,6 +34491,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.698
       objectReference: {fileID: 0}
+    - target: {fileID: 4402162619129856792, guid: ed5074b632dda82498fd3c03a4fa92b5, type: 3}
+      propertyPath: m_spawningObject
+      value: 
+      objectReference: {fileID: 7386712542322936191, guid: e931a7eede336c448ac48a9dce3a557e, type: 3}
     - target: {fileID: 5083269409483005537, guid: ed5074b632dda82498fd3c03a4fa92b5, type: 3}
       propertyPath: m_Name
       value: ItemSpawner_2
