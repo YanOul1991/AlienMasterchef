@@ -38214,6 +38214,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8325264632580922854, guid: 44c30f70c3bfec14aa0d43a637438445, type: 3}
+      propertyPath: m_eyeAnchor
+      value: 
+      objectReference: {fileID: 38361951}
+    - target: {fileID: 8325264632580922854, guid: 44c30f70c3bfec14aa0d43a637438445, type: 3}
       propertyPath: m_playerRoot
       value: 
       objectReference: {fileID: 904818728}
