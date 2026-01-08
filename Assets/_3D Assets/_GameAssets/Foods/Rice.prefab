@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3543681708
+  GlobalObjectIdHash: 486737349
   InScenePlacedSourceGlobalObjectIdHash: 486737349
   DeferredDespawnTick: 0
   Ownership: 1
@@ -108,6 +108,10 @@ MonoBehaviour:
     cookedStateObject: {fileID: 8354284182301089161}
     friedStateObject: {fileID: 0}
     blendedStateObject: {fileID: 0}
+  m_audioKnife: {fileID: 8300000, guid: 65dfdbd3bdc5dc04d9ece27f55ac7234, type: 3}
+  m_audioBlender: {fileID: 8300000, guid: bdd838689b795a74db5f3889cecfaaa6, type: 3}
+  m_audioStove: {fileID: 8300000, guid: 2f844f1a68d896142b1f8ab2a6ce8624, type: 3}
+  m_audioFrier: {fileID: 8300000, guid: a99e5c4ba43a07744b9492dbb5846688, type: 3}
 --- !u!114 &5261173506721594817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,9 +145,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01

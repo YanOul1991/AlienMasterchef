@@ -126,6 +126,10 @@ MonoBehaviour:
     cookedStateObject: {fileID: 1082809436235764386}
     friedStateObject: {fileID: 0}
     blendedStateObject: {fileID: 0}
+  m_audioKnife: {fileID: 8300000, guid: 65dfdbd3bdc5dc04d9ece27f55ac7234, type: 3}
+  m_audioBlender: {fileID: 8300000, guid: bdd838689b795a74db5f3889cecfaaa6, type: 3}
+  m_audioStove: {fileID: 8300000, guid: 2f844f1a68d896142b1f8ab2a6ce8624, type: 3}
+  m_audioFrier: {fileID: 8300000, guid: a99e5c4ba43a07744b9492dbb5846688, type: 3}
 --- !u!54 &8348131911343027405
 Rigidbody:
   m_ObjectHideFlags: 0
