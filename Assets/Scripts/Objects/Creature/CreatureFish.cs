@@ -48,6 +48,15 @@ public class CreatureFish : Creature<CreatureFish>
     {
       if (tool.eToolType == EToolType.Knife)
       {
+        if (tool.TryGetComponent(out AudioSource audioSource))
+        {
+          audioSource.PlayOneShot(m_deathSound);
+        }
+        else
+        {
+          audioSource = tool.gameObject.AddComponent<AudioSource>();
+          audioSource.PlayOneShot(m_deathSound);
+        }
         Death();
       }
     }
@@ -59,6 +68,15 @@ public class CreatureFish : Creature<CreatureFish>
     {
       if (tool.eToolType == EToolType.Knife)
       {
+        if (tool.TryGetComponent(out AudioSource audioSource))
+        {
+          audioSource.PlayOneShot(m_deathSound);
+        }
+        else
+        {
+          audioSource = tool.gameObject.AddComponent<AudioSource>();
+          audioSource.PlayOneShot(m_deathSound);
+        }
         Death();
       }
     }

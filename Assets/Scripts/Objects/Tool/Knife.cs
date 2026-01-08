@@ -6,10 +6,14 @@ using UnityEngine;
   typeof(NetworkObject), 
   typeof(NetworkTransform))
 ]
+[RequireComponent(typeof(AudioSource))]
 public class Knife : NetworkBehaviour
 {
+  public AudioClip m_creatureDeathSound;
+
   private Vector3 initialPosition;
   private Quaternion initialRotation;
+
 
   private void Awake()
   {
@@ -39,5 +43,29 @@ public class Knife : NetworkBehaviour
   {
     if (transform.position.y < -15.0f)
       transform.SetPositionAndRotation(initialPosition, initialRotation);
+  }
+
+  void OnCollisionEnter(Collision collision)
+  {
+    if (collision.gameObject.TryGetComponent(out CreatureFish creatureFish))
+      PlayDeathSoundRpc();
+      
+    if (collision.gameObject.TryGetComponent(out CreatureMosquito creatureMosquito))
+      PlayDeathSoundRpc();
+  }
+
+  void OnTriggerEnter(Collider collision)
+  {
+    if (collision.gameObject.TryGetComponent(out CreatureFish creatureFish))
+      PlayDeathSoundRpc();
+      
+    if (collision.gameObject.TryGetComponent(out CreatureMosquito creatureMosquito))
+      PlayDeathSoundRpc();
+  }
+
+  [Rpc(SendTo.Everyone)]
+  private void PlayDeathSoundRpc()
+  {
+    GetComponent<AudioSource>().PlayOneShot(m_creatureDeathSound);
   }
 }

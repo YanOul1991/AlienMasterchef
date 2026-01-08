@@ -12,7 +12,7 @@ public class Connexion : MonoBehaviour
     void StartGame()
     {
         NetworkServer.Singleton.StartMatchmaking();
-        Invoke("DesactiveBouton", 1.5f);
+        Invoke("DesactiveBouton", 1f);
         
     }
 

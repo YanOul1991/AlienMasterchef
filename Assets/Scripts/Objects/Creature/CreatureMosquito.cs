@@ -85,6 +85,15 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
     {
       if (tool.eToolType == EToolType.Knife)
       {
+        if (tool.TryGetComponent(out AudioSource audioSource))
+        {
+          audioSource.PlayOneShot(m_deathSound);
+        }
+        else
+        {
+          audioSource = tool.gameObject.AddComponent<AudioSource>();
+          audioSource.PlayOneShot(m_deathSound);
+        }
         Death();
       }
     }
@@ -97,6 +106,15 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
     {
       if (tool.eToolType == EToolType.Knife)
       {
+        if (tool.TryGetComponent(out AudioSource audioSource))
+        {
+          audioSource.PlayOneShot(m_deathSound);
+        }
+        else
+        {
+          audioSource = tool.gameObject.AddComponent<AudioSource>();
+          audioSource.PlayOneShot(m_deathSound);
+        }
         Death();
       }
     }
@@ -105,10 +123,7 @@ public sealed class CreatureMosquito : Creature<CreatureMosquito>
   protected override void Death()
   {
     if (!IsServer) return;
-
-    PlayDeathSoundRpc();
-
-    PlayDeathSoundRpc();
+    
     NetworkServer.Singleton.DeactivateGameObjectInNetwork(gameObject);
     GameObject _food = Instantiate(ResultingFood, transform.position, transform.rotation);
     NetworkServer.Singleton.SpawnGameObjectInNetwork(_food);

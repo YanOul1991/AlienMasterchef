@@ -1,24 +1,28 @@
-using UnityEditor;
 using UnityEngine;
+
+#if UNITYEDITOR
+using UnityEditor;
+#endif
 
 public class CreatureFishMeshPoints : MonoBehaviour
 {
-  public Vector3 sizes;
-  public float pointSpacing;
-  public Vector3[] points;
-  public float gizmosRadius;
+    public Vector3 sizes;
+    public float pointSpacing;
+    public Vector3[] points;
+    public float gizmosRadius;
 
-  void OnDrawGizmosSelected()
-  {
-    Gizmos.color = Color.darkCyan;
-    
-    Gizmos.DrawWireCube(transform.position + (sizes / 2), sizes);
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.darkCyan;
 
-    foreach (Vector3 point in points)
-      Gizmos.DrawSphere(point, gizmosRadius);
-  }
+        Gizmos.DrawWireCube(transform.position + (sizes / 2), sizes);
 
-  [CustomEditor(typeof(CreatureFishMeshPoints))]
+        foreach (Vector3 point in points)
+            Gizmos.DrawSphere(point, gizmosRadius);
+    }
+
+#if UNITYEDITOR
+    [CustomEditor(typeof(CreatureFishMeshPoints))]
   public class CreatureFishMeshPointsEditor : Editor
   {
     public override void OnInspectorGUI()
@@ -53,4 +57,5 @@ public class CreatureFishMeshPoints : MonoBehaviour
       serializedObject.ApplyModifiedProperties();
     }
   }
+#endif
 }
